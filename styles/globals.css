@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+
+
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.imp {
+    margin-left: 2px;
+    padding-bottom: 2px;
+    color: red;
+}
+
+.sc-jnqLxu svg path[d="M7 10l5 5 5-5z"]  {
+    display: none;
+}

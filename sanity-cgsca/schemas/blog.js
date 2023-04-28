@@ -8,7 +8,8 @@ export default {
         name: 'title',
         type: 'string',
         title: 'Title',
-        validation : Rule => Rule.required(),
+        validation: Rule => [Rule.required().min(40).error('min 40'),Rule.required().max(100).error('A title of max. 100 characters is required')]
+        
       },
       {
         name : 'author',
@@ -23,7 +24,7 @@ export default {
          options : {
             dateFormat : 'DD-MM-YYYY',
         },
-        defaultValue: new Date().toISOString().split('T')[0]
+        validation: Rule => Rule.required()
       },
       {
         name : 'headerImage',

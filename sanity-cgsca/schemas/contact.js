@@ -4,7 +4,7 @@ export default {
       title: 'Contact',
     fields: [
       {
-        name: 'Name',
+        name: 'name',
         type: 'string',
         title: 'Notice Heading',
         validation : Rule => Rule.required()
@@ -16,15 +16,10 @@ export default {
         validation : Rule => Rule.required()
       },
       {
-        name : 'query',
+        name : 'message',
         type : 'text',
-        title : 'Query',
+        title : 'Message',
         validation : Rule => Rule.required()
-      },
-      {
-        name : 'mobile',
-        type : 'string',
-        title : 'Mobile',
       },
     ]
   }

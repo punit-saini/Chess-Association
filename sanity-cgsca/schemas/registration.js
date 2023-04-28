@@ -1,15 +1,20 @@
-import { Rule } from "postcss";
 
 export default {
-    name: 'Registration',
+    name: 'register',
     type: 'document',
       title: 'Registration',
     fields: [
+      {
+        name: 'firstName',
+        type: 'string',
+        title: 'First Name',
+        validation : Rule => Rule.required()
+      },
         {
             name : 'id',
             type : 'string',
             title : 'Id',
-            validation : Rule => Rule.required(),
+            // validation : Rule => Rule.required(),
         },
         {
             name : 'registrationDate',
@@ -20,12 +25,7 @@ export default {
             },
             validation : Rule => Rule.required(),
         },
-      {
-        name: 'firstName',
-        type: 'string',
-        title: 'First Name',
-        validation : Rule => Rule.required()
-      },
+      
       {
          name : 'middleName',
          type : 'string',
@@ -56,6 +56,12 @@ export default {
         validation : Rule => Rule.required(),
       },
       {
+        name : 'pincode',
+        type : 'string',
+        title : 'Pincode',
+        validation : Rule => Rule.required(),
+      },
+      {
         name : 'relationship',
         title : 'Relationship',
         type : 'string',
@@ -75,9 +81,9 @@ export default {
         type : 'string',
         options: {
             list: [
-              {title: 'Male', value: 'male'},
-              {title: 'Female', value: 'female'},
-              {title: 'Other', value: 'other'},
+              {title: 'Male', value: 'M'},
+              {title: 'Female', value: 'F'},
+              {title: 'Other', value: 'Other'},
             ], 
           },
           validation: Rule => Rule.required()
@@ -103,7 +109,7 @@ export default {
         options: {
                     list: [
                     {title: 'Balod', value: 'balod'},
-                    {title: 'Baloda Bazar', value: 'baloda bazar'},
+                    {title: 'Baloda Bazar', value: 'balodaBazar'},
                     {title: 'Balrampur', value: 'balrampur'},
                     {title: 'Bastar', value: 'bastar'},
                     {title: 'Bemetara', value: 'bemetara'},
@@ -124,7 +130,7 @@ export default {
                     {title: 'Koriya', value: 'koriya'},
                     {title: 'Mahasamund', value: 'mahasamund'},
                     {title: 'Manendragarh Chirmiri Bharatpur', value: 'manendragarhChirmiriBharatpur'},
-                    {title: 'Mohla Manpur', value: 'mohla manpur'},
+                    {title: 'Mohla Manpur', value: 'mohlaManpur'},
                     {title: 'Mungeli', value: 'mungeli'},
                     {title: 'Narayanpur', value: 'narayanpur'},
                     {title: 'Raigarh', value: 'raigarh'},
@@ -136,7 +142,9 @@ export default {
                     {title: 'Surajpur', value: 'surajpur'},
                     {title: 'Surguja', value: 'surguja'}
                     ], 
-                }
+                },
+        validation : Rule => Rule.required(),
+
       },
       {
         name : 'fideId',
@@ -154,24 +162,27 @@ export default {
         type : 'string',
         options : {
             list : [
-                {title : 'Player', value : 'player'},
-                {title : 'Arbiter', value : 'arbiter'},
-                {title : 'Coach', value : 'coach'}
+                {title : 'Player', value : 'Player'},
+                {title : 'Arbiter', value : 'Arbiter'},
+                {title : 'Coach', value : 'Coach'}
             ]
-        }
+        },
+        validation : Rule => Rule.required(),
+
       },
       {
-        name : 'photo',
-        title : 'Photo',
-        type : 'image',
-        options : {
-            hotspot : true,
-        }
+        name : 'profileUrl',
+        title : 'Profile Photo Url',
+        type : 'string',
+        validation : Rule => Rule.required(),
+
       },
       {
-        name : 'dobProof',
-        title : 'Dob Proof',
-        type : 'image',
+        name : 'dobUrl',
+        title : 'Dob Proof Url',
+        type : 'string',
+        validation : Rule => Rule.required(),
+
       },
       {
         name : 'paymentId',
@@ -182,7 +193,7 @@ export default {
         name: 'length',
         type: 'number',
         title: 'Membership Length (in years)',
-        validation: Rule => Rule.required().min(1).max(5),
+        validation: Rule => Rule.required().min(1).max(5)
       },
       {
         name: 'status',
@@ -190,11 +201,11 @@ export default {
         title: 'Membership Status',
         options: {
           list: [
-            {title: 'Active', value: 'active'},
-            {title: 'Expired', value: 'expired'},
+            {title: 'Active', value: 'Active'},
+            {title: 'Expired', value: 'Expired'},
           ],
         },
-        validation: Rule => Rule.required(),
+        // validation: Rule => Rule.required(),
       },
       {
         name : 'expiryDate',
@@ -203,7 +214,7 @@ export default {
         options : {
             dateFormat : 'DD-MM-YYYY',
         },
-        validation: Rule => Rule.required()
+        // validation: Rule => Rule.required()
       },
     ],
   }
