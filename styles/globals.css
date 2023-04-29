@@ -19,3 +19,33 @@
 .sc-jnqLxu svg path[d="M7 10l5 5 5-5z"]  {
     display: none;
 }
+
+.notice-slider-container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+  }
+  
+  .notice-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .notice-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .notice-card .max-w-md {
+    /* height: 100%; */
+  }
+  
+  .keen-slider {
+    /* width: 80%; */
+  }
+  
+  .keen-slider__slide {
+    /* height: 100%; */
+  }

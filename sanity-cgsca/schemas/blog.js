@@ -11,6 +11,20 @@ export default {
         validation: Rule => [Rule.required().min(40).error('min 40'),Rule.required().max(100).error('A title of max. 100 characters is required')]
         
       },
+      { 
+        name: 'slug',
+        title: 'Slug',
+        type: 'slug',
+        options: {
+          source: 'title',
+          maxLength: 200, // will be ignored if slugify is set
+          slugify: input => input
+                               .toLowerCase()
+                               .replace(/\s+/g, '-')
+                               .slice(0, 50)
+        },
+        validation: Rule => Rule.required()
+      },
       {
         name : 'author',
         type : 'string',

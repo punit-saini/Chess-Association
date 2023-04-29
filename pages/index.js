@@ -3,9 +3,10 @@ import { useKeenSlider } from "keen-slider/react"
 import Link from "next/link"
 import { urlFor } from '../lib/client'
 import { client } from '../lib/client';
+import { XMarkIcon } from '@heroicons/react/20/solid'
 
 
-export default ({marquees, bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
+export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [loaded, setLoaded] = useState(false)
   const [sliderRef, instanceRef] = useKeenSlider({
@@ -17,16 +18,28 @@ export default ({marquees, bannerImage, blogs, notices, newsArticles,galleryPost
       setLoaded(true)
     },
   })
-
+  const animation = { duration: 5000, easing: (t) => t }
 
         const [verticalSliderRef] = useKeenSlider({
-          loop: false,
+          loop: true,
+          renderMode: "performance",
+            drag: true,
+            created(s) {
+              s.moveToIdx(1, true, animation)
+            },
+            updated(s) {
+              s.moveToIdx(s.track.details.abs + 2, true, animation)
+            },
+            animationEnded(s) {
+              s.moveToIdx(s.track.details.abs + 2, true, animation)
+            },
           slides: {
             origin: "center",
             perView: 2,
-            spacing: 10,
+            spacing: 4,
+            
           },
-          vertical: true,
+          vertical : true,
         })
 
   return (
@@ -40,7 +53,7 @@ export default ({marquees, bannerImage, blogs, notices, newsArticles,galleryPost
 
           {/* Marquee */}
 
-         <div className="animator w-full">
+         {/* <div className="animator w-full">
               <div className="overflow-hidden whitespace-nowrap mx-auto mt-4 lg:mt-8">
                 <div className="animate-scrolling flex">
                     {marquees?.map((marquee)=>{
@@ -53,17 +66,66 @@ export default ({marquees, bannerImage, blogs, notices, newsArticles,galleryPost
                 </div>
               </div>
             </div>
-          </div> 
+          </div>  */}
+<div>
+          <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+      <div
+        className="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
+        aria-hidden="true"
+      >
+        <div
+          className="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30"
+          style={{
+            clipPath:
+              'polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)',
+          }}
+        />
+      </div>
+      <div
+        className="absolute left-[max(45rem,calc(50%+8rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
+        aria-hidden="true"
+      >
+        <div
+          className="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30"
+          style={{
+            clipPath:
+              'polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)',
+          }}
+        />
+      </div>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+        <p className="text-sm leading-6 text-gray-900">
+          <strong className="font-semibold">CGSCA Tournaments</strong>
+          <svg viewBox="0 0 2 2" className="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true">
+            <circle cx={1} cy={1} r={1} />
+          </svg>
+          Get yourself registered to participate in upcoming CGSCA organised events. 
+        </p>
+        <Link
+          href="/registration"
+          className="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+        >
+          Register now <span aria-hidden="true">&rarr;</span>
+        </Link>
+      </div>
+      <div className="flex flex-1 justify-end">
+        <button type="button" className="-m-3 p-3 focus-visible:outline-offset-[-4px]">
+          <span className="sr-only">Dismiss</span>
+          <XMarkIcon className="h-5 w-5 text-gray-900" aria-hidden="true" />
+        </button>
+      </div>
+    </div>
+    </div>
         
         
          
-        
+
 
 
         {/* Carousel  */}
       
 
-        <div className="navigation-wrapper w-11/12 mx-auto mt-6  lg:w-3/5 lg:mt-10">
+        <div className="navigation-wrapper w-11/12 mx-auto mt-16  lg:w-3/5 lg:mt-24">
         <div ref={sliderRef} className="keen-slider keen-slider-carousel rounded-xl">
           {bannerImage[0] && <div className="keen-slider__slide"><img className=" w-full h-[100%]" src={urlFor(bannerImage[0].image).url()} /></div> }
           {bannerImage[1] && <div className="keen-slider__slide"><img className=" w-full h-[100%]" src={urlFor(bannerImage[1].image).url()} /></div> }
@@ -113,174 +175,226 @@ export default ({marquees, bannerImage, blogs, notices, newsArticles,galleryPost
       )}
  
 
-      {/* Tournament News & Blogs */}
-
-
-      <div className="w-11/12 lg:w-5/6 mx-auto mt-12 mb-12">
-         <div className="heading flex justify-between">
-             <h1 className="text-xl font-semibold border-b-2 border-my-green pb-2">Blogs & Tournament News</h1>
-         </div>
-
-        <div className=" flex mt-10 overflow-scroll ">
-
-          {blogs ? blogs.map((blog)=>{
-             return(
-              <div className="keen-slider__slide  py-2 mr-5 w-5/6 px-4">
-              <div className=" flex flex-col  justify-around border-2 h-[220px] border-my-black border-l-8 rounded-lg py-8 px-3 border-l-my-green w-[280px] lg:w-[400] ">
-                  <h1 className="font-bold font-serif">{blog.title}</h1>
-                  <div className="flex gap-2 mt-3">
-                      <p className="py-1 px-2 bg-my-grey drop-shadow-md rounded-lg">{blog.uploadDate}</p>
-                      <div className="flex gap-1 py-1 px-2 bg-my-grey drop-shadow-md rounded-lg">
-                        <img src="./user.png" className=" w-5 h-5 mt-1" />
-                          <p className="">{blog.author}</p>
-                      </div>
-                  </div>
-              </div>
-              </div>)
-
-          }) : <h1 className="text-center mt-8"> No blogs!</h1>}
-   
-
-      </div>
-
 
       {/* Notice & CGSA*/}
 
-      <div  className="w-11/12 lg:w-5/6 mx-auto md:flex md:justify-between  items-stretch my-16 ">
 
 
-        <div className="notice-section w-fit mx-auto justify-self-center">
-           
+<div>
+
+<div className="bg-white py-8 px-4 md:py-16 md:px-8 mt-14">
+  <div className="max-w-screen-xl mx-auto md:grid md:grid-cols-3 md:gap-8">
+    <div className="md:col-span-2">
+      <div className="  rounded-lg shadow-lg md:shadow-xl">
+        <h2 className="text-3xl font-bold py-2 px-4 border-b-2 border-gray-300 mb-6">
+          Notice Board
+        </h2>
+        <div className="space-y-6 w-5/6 bg-gray-50 py-3 px-2 mx-auto md:w-full  overflow-y-scroll h-[433px]">
+          {notices.map((notice) => (
+            <div key={notice._id} className="border-b border-gray-300 pb-6">
+              <div className="flex items-center space-x-4">
+                <svg className="w-8 h-8 fill-current text-gray-600">
+                  <use xlinkHref="/sprite.svg#icon-file-text"></use>
+                </svg>
+                <a href={`${notice.fileURL}?dl=Notice Dated ${notice._updatedAt.slice(0,10)}.pdf`} download={true}  className="text-lg font-bold text-gray-700 hover:underline">
+                 📃  {notice.noticeHeading}
+                </a>
+              </div>
+              <p className="text-gray-600 font-medium py-2 relative top-3 left-9 px-3 rounded-xl  bg-gray-100 w-fit text-sm mt-2">
+                {notice._updatedAt.slice(0,10)}
+              </p>
+            </div>
+          ))}
+        </div>
        
+      </div>
+    </div>
+    <div className="mt-8  md:mt-0">
+      <div className="bg-white p-6">
+        <img className="w-48 h-48 mx-auto mb-6" src={'../logo.png'} alt="CGSCA Logo"/>
+        <div className="text-center text-2xl text-gray-800 font-bold mb-4">
+          Chhattisgarh State Chess Association
+        </div>
+        <div className="text-center text-lg text-gray-600 font-medium mb-4">
+          Affiliated to All India Chess Federation
+        </div>
+        <div className="text-center text-lg text-gray-600 font-medium mb-4">
+          Recognized by Sports and Youth Welfare Chhattisgarh Government
+        </div>
+        <div className="flex justify-center space-x-4 mt-4">
+          <img className="w-12 h-12" src="../aicf-logo.webp" alt="AICF Logo"/>
+          <img className="w-12 h-12" src="../government-logo.webp" alt="Sports and Youth Welfare CG Logo"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-         <div className="heading flex justify-between">
-             <h1 className="text-xl font-semibold border-b-2 border-my-green pb-2">Notices</h1>
-
-         </div>
-
-         <div className=" px-3 text-center w-fit drop-shadow-2xl">
 
 
-         <div ref={verticalSliderRef} className="keen-slider" style={{ height: 350 }}>
 
-             
-              {notices.map((notice)=> {
-                 return(
-                  <div className="keen-slider__slide mb-4">
-                        <div className=" max-w-[300px] p-4 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                              <a href={`${notice.fileURL}?dl=Notice Dated ${notice._updatedAt.slice(0,10)}`} download={true} className=" z-50 inline-flex items-center hover:underline text-left mb-2 text-xl font-semibold tracking-tight text-my-black underline dark:text-white"> {notice.noticeHeading}  </a>
-                            <p className="py-1 px-2 bg-my-grey drop-shadow-md rounded-lg text-sm w-fit">{notice._updatedAt.slice(0,10)}</p>
-                      </div> 
-                      
-                  </div>
-                 )
-              })}
+  </div>
+     
 
-            
+
+
+
+
+
+
+      {/* Tournament News & Blogs */}
+
+
+    
+
+
+<div className=" py-8 mt-12 bg-gray-50">
+  <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center">
+      <h2 className="text-3xl font-bold tracking-tight text-gray-900">Blogs &amp; Tournament News</h2>
+    </div>
+    <div className="mt-16 grid gap-10 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-10">
+      {blogs ? blogs.map((blog) => (
+        <div key={blog._id} className="flex flex-col w-5/6 mx-auto rounded-lg shadow-lg overflow-hidden transition duration-300 hover:shadow-xl">
+          <div className="flex-shrink-0">
+            <img className="h-48 w-full object-cover" src={urlFor(blog.headerImage).url()} alt={blog.title} />
           </div>
-            
-                    
-            <p className=" text-center md:hidden text-my-green mx-auto">________________________</p>
-        </div> 
+          <div className="flex-1 bg-white p-6 flex flex-col justify-between">
+            <div className="flex-1">
+              <Link href={`blog/${blog.slug.current}`} className="block text-xl font-semibold text-gray-900 mb-3 hover:text-my-green transition-colors duration-300">{blog.title}</Link>
+              <p className="text-base text-gray-500 line-clamp-3">{blog.description}</p>
+            </div>
+            <div className="mt-6 flex items-center">
+              <div className="flex-shrink-0">
+                <img className="h-10 w-10 rounded-full" src="./user.png" alt="User Icon" />
+              </div>
+              <div className="ml-3">
+                <p className="text-sm font-medium text-gray-900">{blog.author}</p>
+                <p className="text-sm text-gray-500">{blog.uploadDate}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )) : <h1 className="text-center mt-8">No blogs!</h1>}
+    </div>
+  </div>
+</div>
 
-                
 
 
 
 
-         </div>
 
-          {/* cgsa */}
-                      
-          <div className=" w-fit">
-             <img width={'250px'} className="mx-auto" src="/logo.png" />
-             <h1 className=" font-medium leading-6 tracking-wide text-justify text-lg">Chhattisgarh State Chess Association - Promoting the intellectual and social benefits of chess for all.  State Chess Association is committed to making chess accessible and rewarding for everyone. Chhattisgarh State Chess Association - Promoting </h1>
-         </div>  
+
+<div>
+
+
+
+
+
+
+         
+                     
       </div>
 
 
 
       {/* Sponsor  */}
 
-      <div className="w-11/12 md:w-5/6 lg:w-3/6 min-h-60 my-auto mx-auto rounded-xl bg-my-yellow  text-my-black px-3 py-6 mb-6">
-            <img src="/Tshirt.png" className="mx-auto sm:w-12 w-16" />
-            <h1 className=" my-auto font-semibold text-lg leading-7 tracking-wider mb-4">Sponsor our event and make a difference! Your support will help us make this event a success and enable us to continue promoting mission. </h1>
-            <Link className="py-2 font-mono px-3 text-md font-thin drop-shadow-lg text-white bg-my-black rounded-lg" href={'#'}>GET IN TOUCH</Link>
-      </div>
+
+
+<div className="w-11/12 my-16 md:w-5/6 lg:w-3/6 min-h-60  mx-auto rounded-xl bg-my-yellow text-my-black px-6 py-8 mb-6 shadow-lg">
+  <div className="flex justify-center items-center mb-6">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 md:h-20 md:w-20 text-my-black" viewBox="0 0 20 20" fill="currentColor">
+      <path filRule="evenodd" d="M4.054 4.054c.53-.53 1.237-.822 1.98-.822s1.45.292 1.98.822L10 7.637l2.986-2.586c.53-.53 1.237-.822 1.98-.822s1.45.292 1.98.822c.53.53.822 1.237.822 1.98s-.292 1.45-.822 1.98L12.363 10l2.586 2.986c.53.53.822 1.237.822 1.98s-.292 1.45-.822 1.98c-.53.53-1.237.822-1.98.822s-1.45-.292-1.98-.822L10 12.363l-2.986 2.586c-.53.53-1.237.822-1.98.822s-1.45-.292-1.98-.822c-.53-.53-.822-1.237-.822-1.98s.292-1.45.822-1.98L7.637 10 4.054 7.014c-.53-.53-.822-1.237-.822-1.98s.292-1.45.822-1.98z" clipRule="evenodd" />
+    </svg>
+  </div>
+  <h1 className="text-center font-semibold text-2xl md:text-3xl leading-8 tracking-wider mb-4">Sponsor Our Event and Make a Difference!</h1>
+  <p className="text-center text-md md:text-lg mb-6">Your support will help us make this event a success and enable us to continue promoting our mission.</p>
+  <div className="flex justify-center">
+    <a className="py-3 px-6 text-lg font-semibold tracking-wider text-white bg-my-black rounded-lg hover:bg-gray-900 transition duration-200" href="/contact-us">Get in Touch</a>
+  </div>
+</div>
+
+
+
 
     
 
 
-      {/* In The New */}
+      {/* In The News */}
 
-        <div>
+        <div className="w-5/6 mx-auto my-16">
 
 
             <h1 className="text-2xl font-semibold border-b-2 border-my-green pb-2 mb-4">In The News</h1>
 
 
             
-            <div className="md:flex justify-around">
-                  
-               
-               {newsArticles.map((newsArticle)=>{
-                    return(
-                           
-                      <div className="max-w-sm mb-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                          <a className="h-[280px]" href="#">
-                              <img className="rounded-t-lg m-auto h-[230px]" src={urlFor(newsArticle.image).url()} alt="" />
-                          </a>
-                            <div className="p-5">
-                              <a href="#">
-                                  <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{newsArticle.newsTitle}</h5>
-                              </a>
-                              <a href={newsArticle.articleLink} target="_blank" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-tr from-my-green to-my-black rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                  Read
-                                  <svg aria-hidden="true" className="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                              </a>
-                            </div>
-                      </div>
-                    )
-               })}
+            <div className="overflow-x-auto">
+  <div className="flex flex-wrap justify-center">
+    {newsArticles.map((newsArticle) => (
+      <div
+        key={newsArticle._id}
+        className="w-full md:w-1/2 lg:w-1/3 p-4"
+      >
+        <div className="h-full border-2 border-gray-200 rounded-lg overflow-hidden">
+          <a href={newsArticle.articleLink} target="_blank">
+            <img
+              className="lg:h-48 md:h-36 w-full object-cover object-center"
+              src={urlFor(newsArticle.image).url()}
+              alt=""
+            />
+          </a>
+          <div className="p-6">
+            <a href={newsArticle.articleLink} target="_blank">
+              <h2 className="text-base font-medium text-gray-900 mb-3 h-16 overflow-hidden">
+                {newsArticle.newsTitle}
+              </h2>
+            </a>
+            <a
+              href={newsArticle.articleLink}
+              target="_blank"
+              className="inline-block bg-gradient-to-tr from-my-black to-my-green hover:bg-black hover:text-my-yellow hover:animate-pulse text-white py-2 px-3 rounded-lg text-sm font-medium"
+            >
+              Read more
+            </a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
 
-                
-
-             </div>
 
 
           
           {/* Gallery */}
 
 
-
           <div className="gallery">
-            <h1 className="text-2xl font-semibold border-b-2 border-my-green pb-2 mb-4">Gallery</h1>
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 sm:grid-cols-1">
-            
-
-          {galleryPosts && galleryPosts.map((galleryPost)=>{
-                return(
-                     
-                  <Link className="" href={`/gallery/${galleryPost.slug.current}`}>
-                      <img
-                          className="object-cover w-full border h-[270px]"
-                          src={urlFor(galleryPost.image).url()}
-                      />
-                      <p href={'#'} className="mx-auto text-center text-my-black bg-my-yellow px-2 py-2 rounded-b-lg">{galleryPost.title}</p>
-                    </Link>
-                )
-
-          })}
-
-            
-            
-            
-           
-            
-        
-        </div>
+  <h1 className="text-3xl font-semibold text-center mb-6">Gallery</h1>
+  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+    {galleryPosts && galleryPosts.map((galleryPost)=>{
+      return(
+        <Link key={galleryPost._id} className="mb-12" href={`/gallery/${galleryPost.slug.current}`}>
+          <div className="relative h-[250px]">
+            <img
+              className="w-full h-full object-cover rounded-md"
+              src={urlFor(galleryPost.image).url()}
+              alt={galleryPost.title}
+            />
+            <div className="absolute inset-0 flex items-center h-[250px] bg-slate-950 hover:bg-opacity-40 justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+              <p className="text-center text-white text-lg font-bold">{galleryPost.title}</p>
+            </div>
           </div>
+        </Link>
+      )
+    })}
+  </div>
+</div>
+
 
 
 
@@ -289,18 +403,6 @@ export default ({marquees, bannerImage, blogs, notices, newsArticles,galleryPost
 
          </div>
       
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -347,16 +449,16 @@ function Arrow(props) {
 
 export async function getStaticProps(){
 
-  const marquees = await client.fetch(`*[_type == "marquee"][0...3]`);
+  // const marquees = await client.fetch(`*[_type == "marquee"][0...3]`);
   const bannerImage = await client.fetch(`*[_type == "banner"][0...5]`);
-  const blogs = await client.fetch(`*[_type == "blog"] | order(_createdAt desc)[0..9]{author,title, uploadDate}`);
-  const notices = await client.fetch(`*[_type == "notice"] | order(_createdAt desc)[0..9]{title, "fileURL" : file.asset->url, _updatedAt, noticeHeading}`);
+  const blogs = await client.fetch(`*[_type == "blog"] | order(_createdAt desc)[0..9]{author,title, uploadDate, slug, _id, headerImage}`);
+  const notices = await client.fetch(`*[_type == "notice"] | order(_createdAt desc)[0..9]{title, "fileURL" : file.asset->url, _updatedAt, noticeHeading, _id}`);
   const newsArticles = await client.fetch(`*[_type == "news"] | order(_createdAt desc)[0..4]`);
-  const galleryPosts = await client.fetch(`*[_type == "gallery"] | order(_createdAt desc)[0..4]{title, slug, image[0]}`);
-   console.log('marquees is : ', marquees, '\n banner Images are : ', bannerImage, ' \n blog is : ', blogs, '\n notices are : ', notices, '\n gallery data is : ', galleryPosts);
+  const galleryPosts = await client.fetch(`*[_type == "gallery"] | order(_createdAt desc)[0..4]{title, slug, image[0], _id}`);
+   console.log('marquees is :  ','\n banner Images are : ', bannerImage, ' \n blog is : ', blogs, '\n notices are : ', notices, '\n gallery data is : ', galleryPosts);
   return {
     props : {
-      marquees, bannerImage, blogs, notices,newsArticles, galleryPosts
+     bannerImage, blogs, notices,newsArticles, galleryPosts
     }
   }
   

@@ -10,7 +10,7 @@ import { useStateContext } from '../context/StateContext';
 const Layout = ({ children }) => {
 
   return (
-      <div className='bg-my-grey'>
+      <div className=' h-full'>
 
       <Head>
         <title>Chhattisgarh Chess</title>
@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
           <link rel="shortcut icon" href="./favicon.ico" />
       </Head>
       <div className=' bg-my-grey h-screen'>
-        <div className='w-[95%] mx-auto relative top-4 min-h-screen bg-white drop-shadow-2xl rounded-t-3xl'>
+        <div className='md:w-[95%] w-[100%] md:top-4 mx-auto relative min-h-screen bg-white drop-shadow-2xl md:rounded-t-3xl'>
         <header className="">
           <Navbar />
         </header>
