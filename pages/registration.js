@@ -556,15 +556,15 @@ export default function Example() {
         </div>
         </div>
 
-
-        
-        <button
-          type="submit"
+        <a href="https://test.instamojo.com/@tirqhehe/l038ac449d9af451eaa814ba31bbd8fc2/" rel="im-checkout" data-text="Pay" data-css-style="color:#ffffff; background:#75c26a; width:300px; border-radius:4px"   data-layout="vertical">Pay Now</a>
+<script src="https://js.instamojo.com/v1/button.js"></script>
+        {/* <Link
+          href={'https://www.instamojo.com/@developer_cgsca/l9b81aa6fb6a540749c54b9208a5db0e4/'}
           className="rounded-md bg-my-green px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-my-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-my-green"
         >
          { isSubmitting? 'Submitting....' : `Proceed To Pay ₹ ${amount}`}
-        </button>
-
+        </Link> */}
+     
 
       </div>
 

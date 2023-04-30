@@ -6,6 +6,7 @@ import 'keen-slider/keen-slider.min.css'
 import "./styles.css"
 import Router from 'next/router';
 import Loader from '../components/Loader';
+import { Analytics } from '@vercel/analytics/react';
 
 
 function MyApp({ Component, pageProps }) {
@@ -31,7 +32,7 @@ function MyApp({ Component, pageProps }) {
             <Component {...pageProps} /> }
           </Layout>
         {/* </StateContext> */}
-
+          < Analytics />
     </>
       
   )
