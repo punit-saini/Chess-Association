@@ -2,6 +2,9 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
+    <div className=' bg-gray-300'>
+
+   
     <div className='bg-my-grey rounded-b-3xl'>
     <footer className="bg-gradient-to-b from-my-black to-my-green text-white md:pb-10 pt-10 px-4 sm:px-10 md:rounded-b-3xl">
       <div className="container mx-auto">
@@ -81,5 +84,7 @@ export default function Footer() {
 
     </footer>
     {/* <div className='md:h-10 bg-my-grey w-full'></div> */}
+    </div>
+
     </div>
   )}
