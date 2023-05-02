@@ -111,7 +111,7 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
       <div className="flex flex-1 justify-end">
         <button type="button" className="-m-3 p-3 focus-visible:outline-offset-[-4px]">
           <span className="sr-only">Dismiss</span>
-          <XMarkIcon className="h-5 w-5 text-gray-900" aria-hidden="true" />
+          {/* <XMarkIcon className="h-5 w-5 text-gray-900" aria-hidden="true" /> */}
         </button>
       </div>
     </div>
@@ -311,7 +311,7 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
     </svg>
   </div>
   <h1 className="text-center font-semibold text-2xl md:text-3xl leading-8 tracking-wider mb-4">Sponsor Our Event and Make a Difference!</h1>
-  <p className="text-center text-md md:text-lg mb-6">Your support will help us make this event a success and enable us to continue promoting our mission.</p>
+  <p className="text-center text-md md:text-lg mb-6">By sponsoring our events, you'll be making a positive impact on our mission and helping us achieve our goals. Your support will make these events a success and enable us to continue making a difference.</p>
   <div className="flex justify-center">
     <a className="py-3 px-6 text-lg font-semibold tracking-wider text-white bg-my-black rounded-lg hover:bg-gray-900 transition duration-200" href="/contact-us">Get in Touch</a>
   </div>
@@ -348,8 +348,8 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
             />
           </a>
           <div className="p-6">
-            <a href={newsArticle.articleLink} target="_blank">
-              <h2 className="text-base font-medium text-gray-900 mb-3 h-16 overflow-hidden">
+            <a href={newsArticle.articleLink} className="min-w-30 " target="_blank">
+              <h2 className="text-base font-medium text-gray-900 mb-3  h-30 md:h-20 overflow-hidden">
                 {newsArticle.newsTitle}
               </h2>
             </a>
@@ -373,9 +373,10 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
           {/* Gallery */}
 
 
-          <div className="gallery">
-  <h1 className="text-3xl font-semibold text-center mb-6">Gallery</h1>
-  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+          <div className="gallery my-16">
+  <h1 className="text-2xl font-semibold border-b-2 border-my-green pb-2 mb-4">Gallery</h1>
+
+  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 my-12">
     {galleryPosts && galleryPosts.map((galleryPost)=>{
       return(
         <Link key={galleryPost._id} className="mb-12" href={`/gallery/${galleryPost.slug.current}`}>
@@ -455,7 +456,7 @@ export async function getStaticProps(){
   const notices = await client.fetch(`*[_type == "notice"] | order(_createdAt desc)[0..9]{title, "fileURL" : file.asset->url, _updatedAt, noticeHeading, _id}`);
   const newsArticles = await client.fetch(`*[_type == "news"] | order(_createdAt desc)[0..4]`);
   const galleryPosts = await client.fetch(`*[_type == "gallery"] | order(_createdAt desc)[0..4]{title, slug, image[0], _id}`);
-   console.log('marquees is :  ','\n banner Images are : ', bannerImage, ' \n blog is : ', blogs, '\n notices are : ', notices, '\n gallery data is : ', galleryPosts);
+  //  console.log('marquees is :  ','\n banner Images are : ', bannerImage, ' \n blog is : ', blogs, '\n notices are : ', notices, '\n gallery data is : ', galleryPosts);
   return {
     props : {
      bannerImage, blogs, notices,newsArticles, galleryPosts

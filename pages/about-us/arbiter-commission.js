@@ -56,9 +56,9 @@ return (
                  
                   <div className="ml-4">
                     <h3 className="text-lg leading-6 font-medium text-gray-900"> 
-                   <span> {'-> '}</span>
+                   <span> <img src="../id-card.png" className="w-8 h-8 inline mr-3" /></span>
                      {member.name}</h3>
-                    <p className="text-md leading-5 text-gray-500 ml-6">{member.position}</p>
+                    <p className="text-md leading-5 text-gray-500 ml-12">{member.position}</p>
                   </div>
                 </div>
               </li>

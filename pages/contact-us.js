@@ -38,7 +38,7 @@ export default  function Contact() {
     <div className="bg-gray-100">
 
       <div className="max-w-screen-lg mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-semibold text-gray-800">Contact Us</h1>
+        <h1 className="text-3xl font-semibold text-gray-800 mt-16">Contact Us</h1>
 
         <div className="mt-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -55,16 +55,17 @@ export default  function Contact() {
 
               { successMessage && <div className='grid grid-cols-1 gap-6 mx-auto mt-12 w-5/6 md:w-4/6 lg:w-3/6 text-center'>
                                 <div className=" items-center rounded-md text-lg bg-green-50 px-2 py-1 font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                                    Form Submitted Successfully
+                                    Just received your message. We'll get back to you soon.
                                 </div>
-                                <Link className=' underline text-xs mt-5' href={'/'}>Take me to the home route</Link>
+                                <Link className=' underline text-xs mt-5' href={'/'}>Take Me To The Home Route</Link>
                                 </div>}
                                 { errorMessage &&  <div className=' grid grid-cols-1 gap-6 mx-auto mt-12 w-5/6 md:w-4/6 lg:w-3/6  text-center'>
                                                                 <div className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
-                                                                    An Unknow Error Occured
+                                                                    An Unknown Error Occured
                                                                 </div>
                                                                 <Link className=' underline text-xs mt-5' href={'/contact-us'}>Retry</Link>
                                                                 </div>}
+              {(successMessage || errorMessage) && <div className=' h-60'></div>}
               <form onSubmit={handleSubmit} className={`grid grid-cols-1 ${successMessage || errorMessage ? 'hidden' : ''} gap-6`}>
 
                             

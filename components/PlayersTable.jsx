@@ -16,11 +16,10 @@ const PlayersTable = () => {
   const cancelButtonRef = useRef(null)
 
   async function handleShowId(e) {
-      console.log('user id si : \n\n\n',e.target.getAttribute('name'))
       const id = e.target.getAttribute('name')
     const query = `*[_type == "register" && id == '${id}']`;
     const response = await client.fetch(query)
-    console.log('response from inside handle show id is : ', response)
+    // console.log('response from inside handle show id is : ', response)
     setUserDetail(response[0])
      setOpen(true);
   }
@@ -29,7 +28,7 @@ const PlayersTable = () => {
         try {
             const query = '*[_type == "register"] | order(_createdAt desc){id, firstName, lastName, gender, status, registrationType}';
             const response = await client.fetch(query)
-            console.log('result is : ', response)
+            // console.log('result is : ', response)
             setPlayers(response)
             setFilteredPlayers(response)
         } catch (error) {
@@ -81,7 +80,7 @@ const PlayersTable = () => {
             if(!response) return player.lastName.toLowerCase().match(search.toLowerCase());
             return response
          })
-         console.log('result is : ', result, 'players is : ', players, 'search is : ', search)
+        //  console.log('result is : ', result, 'players is : ', players, 'search is : ', search)
          setFilteredPlayers(result)
     },[search])
 

@@ -22,7 +22,6 @@
     "formik": "^2.2.9",
     "keen-slider": "^6.8.5",
     "moment": "^2.29.4",
-    "multer": "^1.4.5-lts.1",
     "next": "13.3.1",
     "next-sanity": "^4.1.7",
     "postcss": "8.4.23",

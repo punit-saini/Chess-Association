@@ -49,3 +49,11 @@
   .keen-slider__slide {
     /* height: 100%; */
   }
+
+  input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: transparent;
+}

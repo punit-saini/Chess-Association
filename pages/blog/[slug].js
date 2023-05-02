@@ -6,7 +6,7 @@ import { urlFor } from '../../lib/client';
 export default function Blog({blog}) {
    const { title, author, uploadDate, headerImage, content } = blog
       
-    {console.log('k')}
+    // {console.log('k')}
   return (
     
     <div className="bg-white min-h-screen shadow-md rounded-md overflow-hidden flex flex-col mx-auto my-16">
@@ -62,11 +62,11 @@ export async function getStaticPaths(slug){
 }
 
 export async function getStaticProps ({ params: { slug }}) {
-    console.log('slug is :'+ slug)
+    // console.log('slug is :'+ slug)
     const query = `*[_type == "blog" && slug.current == '${slug}'][0]`;
     
     const blog = await client.fetch(query);
-    console.log('blogs are ', blog)
+    // console.log('blogs are ', blog)
   
     return {
       props: {  

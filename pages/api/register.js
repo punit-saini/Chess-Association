@@ -28,7 +28,7 @@ export default async function register(req,res){
           }
  
         await client.create(newUser).then((res) => {
-            console.log(`created ${res}`)
+            // console.log(`created ${res}`)
           })
 
            

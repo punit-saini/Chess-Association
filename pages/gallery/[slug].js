@@ -8,9 +8,9 @@ export default function slug({post}){
     return (
         <>
             <div className="bg-gray-100 min-h-screen">
-                <header className="py-12 lg:py-16">
+                <header className="py-12 lg:py-16 w-5/6 mx-auto md:w-4/6 lg:w-1/2">
                
-                    <h1 className="text-4xl sm:text-5xl font-bold text-center text-gray-800 mb-2">{post?.title}</h1>
+                    <h1 className="text-4xl sm:text-5xl font-bold text-center leading-loose text-gray-800 mb-6">{post?.title}</h1>
                     <p className="text-xl text-gray-600 text-center mb-6">{post?.description[0]?.children[0]?.text}</p>
                
                 </header>
@@ -42,7 +42,7 @@ export async function getStaticPaths(slug){
             current
         }
     }`;
-    console.log('query is : ', query)
+    // console.log('query is : ', query)
     const galleryPosts = await client.fetch(query);
     //  console.log('gallery posts are : ', galleryPosts)
     const paths = galleryPosts.map((galleryPost) => ({
@@ -59,12 +59,12 @@ export async function getStaticPaths(slug){
 
 
 export async function getStaticProps ({ params: { slug }}) {
-    console.log('slug is :'+ slug)
+    // console.log('slug is :'+ slug)
     const query = `*[_type == "gallery" && slug.current == '${slug}'][0]`;
     
     const post = await client.fetch(query);
     
-     console.log('post is : ', post)
+    //  console.log('post is : ', post)
     return {
       props: {  
         post : post

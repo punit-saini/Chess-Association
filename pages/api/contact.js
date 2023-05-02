@@ -8,14 +8,14 @@ export default async function register(req,res){
 
       
       try {
-         console.log('req body is : ', req.body)
+        //  console.log('req body is : ', req.body)
         const newMessage = {
             _type: 'contact',
             ...req.body,
           }
     
         await client.create(newMessage).then((res) => {
-            console.log(`created ${res}`)
+            // console.log(`created ${res}`)
           })
 
            

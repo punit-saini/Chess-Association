@@ -34,7 +34,7 @@ export default function HomePage({tournamentsData}) {
     //       "time": "11:00 AM"
     //     }
     //   ]
-    console.log('tournament data is : ', tournamentsData)
+    // console.log('tournament data is : ', tournamentsData)
   const [tournaments, setTournaments] = useState(tournamentsData);
   const [filter, setFilter] = useState('upcoming');
   const [selectedMonth, setSelectedMonth] = useState('');
