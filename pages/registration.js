@@ -1,7 +1,8 @@
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import React, {useState, useEffect, Fragment, useRef} from 'react'
+// import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import { Dialog, Transition } from '@headlessui/react'
 import Link from 'next/link'
 
 export default function Example() {
@@ -15,9 +16,16 @@ export default function Example() {
   
      const [ photo, setPhoto ] = useState()
      const [ dobProof, setDobProof ] = useState()
+     const [ paymentProof, setPaymentProof] = useState()
  
-  
+     const [open, setOpen] = useState(false)
+     
+     const cancelButtonRef = useRef(null)
+     
 
+     async function handleShowId(e) {
+     setOpen(true);
+  }
   
     
    const handleSubmit = async (e) => {
@@ -44,7 +52,16 @@ export default function Example() {
         body: dobData,
       });
 
-      const [photoResponse, dobResponse] = await Promise.all([photoUpload, dobUpload]);
+      const paymentData = new FormData();
+      paymentData.append("file", paymentProof);
+      paymentData.append("upload_preset", "t25uyjib");
+      paymentData.append("cloud_name", "dw0f3d3zh");
+      const paymentUpload = fetch("https://api.cloudinary.com/v1_1/dw0f3d3zh/image/upload", {
+        method: "post",
+        body: paymentData,
+      });
+
+      const [photoResponse, dobResponse, paymentResponse] = await Promise.all([photoUpload, dobUpload, paymentUpload]);
 
 
       const photoJson = await photoResponse.json();
@@ -52,12 +69,16 @@ export default function Example() {
   
       const dobJson = await dobResponse.json();
       const dobProofUrl = dobJson.url;
+
+      const paymentJson = await paymentResponse.json();
+      const paymentUrl = paymentJson.url;
         
       
       const response = await axios.post("/api/register", {
         ...formData,
         profileUrl: photoUrl,
         dobUrl: dobProofUrl,
+        paymentProof : paymentUrl
       });
 
       // console.log('response is \n\n\n\n: ', response)
@@ -79,27 +100,21 @@ export default function Example() {
 
 
       <>
-       
-    { successMessage && <div className='mx-auto mt-12 w-5/6 md:w-4/6 lg:w-3/6 text-center'>
-      <div className=" items-center rounded-md text-lg bg-green-50 px-2 py-1 font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-        Form Submitted Successfully
-      </div>
-      <Link className=' underline text-xs mt-5' href={'/'}>Take me to the home route</Link>
-      </div>}
-
-
-    { errorMessage &&  <div className='mx-auto mt-12 w-5/6 md:w-4/6 lg:w-3/6  text-center'>
-      <div className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
-        An unknown error occured. Any amount deducted will be refunded. Contact us through contact details given on website.
-      </div>
-      <Link className=' underline text-xs mt-5' href={'/registration'}>Retry</Link>
-      </div>}
-
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className={`w-11/12 md:w-4/6 mt-16 mb-8 ${ successMessage ? 'hidden' : ''} mx-auto`}>
-      <div className={`space-y-12`}>
         
-        {successMessage && <h2>{successMessage}</h2>}
+
+        
+   
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className={`w-11/12 md:w-4/6 mt-16 mb-8  mx-auto`}>
+         
+         <h1 className='text-4xl font-bold mb-10'>Registration</h1>
+      
+
+{successMessage && <h2>{successMessage}</h2>}
         {errorMessage && <h2>{errorMessage}</h2>}
+      
+      <div className={`space-y-12 ${ successMessage ? 'opacity-0' : ''}`}>
+        
+        
 
         <div className="border-b border-gray-900/10 pb-12">
           <p className="mt-1 text-sm leading-6 text-gray-600"> ⚫ All fields mark with <span className=' text-red-600'>*</span> are compulsory. <br /> ⚫ Registration fee is ₹ 150 / year</p>
@@ -522,9 +537,7 @@ export default function Example() {
 
 
 
-
-
-                <div className="sm:col-span-3 mt-2">
+            <div className="sm:col-span-3 my-12">
               <label htmlFor="length" className="block text-sm font-medium leading-6 text-gray-900">
                 Registration Duration In Years <span className='imp'>*</span>
               </label>
@@ -549,6 +562,44 @@ export default function Example() {
                   <option value='5'>5</option>
                 </select>
               </div>
+
+
+
+
+                <div className="col-span-full mt-12">
+              <label htmlFor="cover" className="block text-sm font-medium leading-6 text-gray-900">
+                Payment Proof <span className='imp'>*</span>
+              </label>
+              <p className='text-sm my-3'>Pay the Registration fee ({amount} ₹) on this QR Code <span onClick={handleShowId} className='underline cursor-pointer'>here</span> and upload the screenshot</p>
+              <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                <div className="text-center">
+                <p className='my-1 text-xs'>{paymentProof?.name}</p>
+                  <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
+                  <div className="mt-4 justify-center flex text-sm leading-6 text-gray-600">
+                    <label
+                      htmlFor="paymentProof"
+                      className="relative cursor-pointer rounded-md bg-white font-semibold text-my-green focus-within:outline-none  hover:text-my-black"
+                    >
+                      <span>Upload a file</span>
+                      <input id="paymentProof" name="paymentProof" type="file" required  accept='.jpg,.png' size='524288' className="sr-only"
+                              onChange={ (e)=>
+                                setPaymentProof(e.target.files[0])
+                              }
+                       />
+                    </label>
+                    <p className="pl-1">or drag and drop</p>
+                  </div>
+                  <p className="text-xs leading-5 text-gray-600">PNG, JPG up to 512 KB</p>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+               
            
 
 
@@ -557,6 +608,12 @@ export default function Example() {
         </div>
 
         
+        <button
+          type="submit"
+          className={`rounded-md bg-my-green px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-my-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-my-green ${ successMessage || errorMessage ? ' cursor-not-allowed' : ''}`}
+        >
+         { isSubmitting? 'Submitting....' : `Submit`}
+        </button>
      
 
       </div>
@@ -566,6 +623,90 @@ export default function Example() {
     
                 
                 </form>
+
+
+
+
+
+
+
+
+
+
+                 {/* QR Code */}
+
+
+            <Transition.Root show={open} as={Fragment}>
+      <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-200"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+        </Transition.Child>
+
+        <div className="fixed inset-0 rounded-lg sm:max-w-5/6 z-10 overflow-y-auto">
+          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                    
+
+                    
+
+               <div className=" bg-slate-50 px-12 py-8 rounded-lg">
+
+                <div className='flex flex-col md:flex-row'>
+                    <div>
+                        <img src='logo.png' className='w-[150px] h-[130px] mx-auto' />
+                    </div>
+                    <div className='flex flex-col justify-center gap-2 leading-6'>
+                          <h1 className=' text-xl font-bold'>Chhattisgarh State Chess Association</h1>
+                          <p className='font-semibold'>Affiliated To All India Chess Federation <br /> Recognised By Sports and Youth Welfate C.G Govt.</p>
+                    </div>
+                </div>
+
+                 
+
+                           
+                    <button
+                            type="button"
+                            className="mt-6 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                            onClick={() => setOpen(false)}
+                            ref={cancelButtonRef}
+                        >
+                            Close
+                  </button>
+
+                </div>
+
+          </div>
+        </div>
+      </Dialog>
+    </Transition.Root>
+
+
+
+
+    { successMessage && <div className='mx-auto my-10 w-5/6 md:w-4/6 lg:w-3/6 text-center'>
+      <div className=" items-center rounded-md text-lg bg-green-50 px-2 py-1 font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+        Form Submitted. Should be approved in couple of days. 
+      </div>
+      <Link className=' underline text-xs mt-5' href={'/'}>Take me to the home route</Link>
+      </div>}
+
+
+    { errorMessage &&  <div className='mx-auto my-10 w-5/6 md:w-4/6 lg:w-3/6  text-center'>
+      <div className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+        An unknown error occured. Any amount deducted will be refunded. Contact us through contact details given on website.
+      </div>
+      <Link className=' underline text-xs mt-5' href={'/registration'}>Retry</Link>
+      </div>}
+   
+
+
                 </>
   
   )

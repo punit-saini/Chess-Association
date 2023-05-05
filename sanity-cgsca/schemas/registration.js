@@ -14,7 +14,7 @@ export default {
             name : 'id',
             type : 'string',
             title : 'Id',
-            // validation : Rule => Rule.required(),
+            validation : Rule => Rule.required(),
         },
         {
             name : 'registrationDate',
@@ -185,6 +185,12 @@ export default {
 
       },
       {
+        name : 'paymentProof',
+        title : 'Payment Proof',
+        type : 'string',
+        validation : Rule => Rule.required(),
+      },
+      {
         name : 'paymentId',
         title : 'Payment Id',
         type : 'string',
@@ -205,7 +211,13 @@ export default {
             {title: 'Expired', value: 'Expired'},
           ],
         },
-        // validation: Rule => Rule.required(),
+        validation: Rule => Rule.required(),
+      },
+      {
+          name : 'approvalStatus',
+          type : 'boolean',
+          title : 'Approval Status',
+          validation : Rule => Rule.required(),
       },
       {
         name : 'expiryDate',
@@ -214,7 +226,7 @@ export default {
         options : {
             dateFormat : 'DD-MM-YYYY',
         },
-        // validation: Rule => Rule.required()
+        validation: Rule => Rule.required()
       },
     ],
   }

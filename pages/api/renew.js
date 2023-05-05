@@ -9,30 +9,24 @@ export default async function register(req,res){
       
       try {
         
-        // console.log('req.body is : ', req.body)
+        console.log('req.body is : ', req.body)
 
         const registrationDate = new Date().toISOString().slice(0, 10);
         const length = parseInt(req.body.length);
         const expiryDate = new Date(registrationDate);
         expiryDate.setFullYear(expiryDate.getFullYear() + length);
-        // console.log('date now is :', date)
-        const newUser = {
-            _type: 'register',
-            ...req.body,
-            id : 'CGSCA'+ new Date().toISOString().slice(8,10)+ new Date().toISOString().slice(6,7)+new Date().toISOString().slice(2,4)+Math.floor(Math.random() * 1000) + 1, 
-            registrationDate,
-            length,
-            expiryDate: expiryDate.toISOString().slice(0, 10),
-            status : 'Active',
-            approvalStatus : false,
-          }
- 
-        await client.create(newUser).then((res) => {
-            // console.log(`created ${res}`)
-          })
+        
+        client
+        .patch(req.body.id)
+        // specify the field to persist the new value
+        .set({'expiryDate' : expiryDate.toISOString().slice(0,10), 'paymentProof' : req.body.paymentProof ,'status': 'Active', 'length' : length, 'approvalStatus' : false })
+        .commit()
+        .then(res => console.log('User status updated successfully!'))
+        .catch(err => console.error('Error updating user status:', err));
+       
 
            
-        res.status(200).json({message : 'User created successfully'})
+        res.status(200).json({message : 'Membership renewal successful'})
       } catch (error) {
         console.log('error occured inside post catch, error is ', error)
         res.status(500).json({message : error})

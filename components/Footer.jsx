@@ -77,8 +77,8 @@ export default function Footer() {
         </div>
       </div>
       <div className="mt-8 border-t border-gray-600 lg:pb-0 pb-6 pt-4 text-center my-center lg:pt-6">
-  <p className="text-sm text-gray-400 lg:pt-2">
-    Developed by <a href="https://www.linkedin.com/in/punit-saini-2003/" className="text-gray-800 hover:text-gray-900 underline" target="_blank" rel="noopener noreferrer">Punit Kumar Saini</a>
+  <p className="text-sm text-gray-400 lg:pt-2 mx-auto">
+    Developed by <a href="https://www.linkedin.com/in/punit-saini-2003/" className="text-grey-500 hover:text-gray-700 underline shadow-md" target="_blank" rel="noopener noreferrer">Punit</a>
   </p>
 </div>
 
