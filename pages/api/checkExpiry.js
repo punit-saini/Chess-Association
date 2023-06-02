@@ -16,6 +16,7 @@ const fetchUsers = async () => {
   return results;
 };
 
+
 // check if user is expired
 const isExpired = (user) => {
     const expiryDate = new Date(user.expiryDate);

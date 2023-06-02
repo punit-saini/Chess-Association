@@ -5,6 +5,7 @@ import axios from 'axios'
 import { Dialog, Transition } from '@headlessui/react'
 import Link from 'next/link'
 
+
 export default function Example() {
 
    const [amount, setAmount]= useState(150)
@@ -21,11 +22,18 @@ export default function Example() {
      const [open, setOpen] = useState(false)
      
      const cancelButtonRef = useRef(null)
-     
 
+
+    const handleButtonClick = async ()=> {
+      const res = await axios.post('/api/handlePayment')
+      console.log('res from the front end is : ', res);
+    }
+
+  
+  
      async function handleShowId(e) {
      setOpen(true);
-  }
+     }
   
     
    const handleSubmit = async (e) => {
@@ -108,7 +116,7 @@ export default function Example() {
          
          <h1 className='text-4xl font-bold mb-10'>Registration</h1>
       
-
+          {/* <button onClick={handleButtonClick}>This is test button</button> */}
 {successMessage && <h2>{successMessage}</h2>}
         {errorMessage && <h2>{errorMessage}</h2>}
       
@@ -529,7 +537,7 @@ export default function Example() {
                     </label>
                     <p className="pl-1">or drag and drop</p>
                   </div>
-                  <p className="text-xs leading-5 text-gray-600">PNG, JPG up to 512 KB</p>
+                  <p className="text-xs leading-5 text-gray-600">PNG, JPG up to 256 KB</p>
                 </div>
               </div>
             </div>
@@ -610,7 +618,7 @@ export default function Example() {
         
         <button
           type="submit"
-          className={`rounded-md bg-my-green px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-my-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-my-green ${ successMessage || errorMessage ? ' cursor-not-allowed' : ''}`}
+          className={`rounded-md bg-my-green text-lg px-3 py-2  font-semibold text-white shadow-sm hover:bg-my-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-my-green ${ successMessage || errorMessage ? ' cursor-not-allowed' : ''}`}
         >
          { isSubmitting? 'Submitting....' : `Submit`}
         </button>
@@ -658,7 +666,7 @@ export default function Example() {
 
                <div className=" bg-slate-50 px-12 py-8 rounded-lg">
 
-                <div className='flex flex-col md:flex-row'>
+                <div className='flex flex-col '>
                     <div>
                         <img src='logo.png' className='w-[150px] h-[130px] mx-auto' />
                     </div>
@@ -666,6 +674,7 @@ export default function Example() {
                           <h1 className=' text-xl font-bold'>Chhattisgarh State Chess Association</h1>
                           <p className='font-semibold'>Affiliated To All India Chess Federation <br /> Recognised By Sports and Youth Welfate C.G Govt.</p>
                     </div>
+                    <img className=' w-4/5 md:w-3/5 mx-auto my-4' src='CGSCA SCR.jpeg' />
                 </div>
 
                  
