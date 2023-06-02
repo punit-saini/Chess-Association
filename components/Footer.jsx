@@ -78,7 +78,7 @@ export default function Footer() {
       </div>
     
             <p className=" text-gray-300 text-xs w-full lg:pt-2 mx-auto bg-gray-800 py-2 md:rounded-b-3xl text-center">
-              <span className=' text-white mb-2 text-base mt-2'> &copy; { new Date().getFullYear()} CGSCA | All rights reserved.</span>
+              <span className=' text-white pb-3 text-base mt-2'> &copy; { new Date().getFullYear()} CGSCA | All rights reserved.</span>
               <br />
               Developed by{" "}
               <a
