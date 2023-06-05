@@ -320,7 +320,7 @@ export default function Example() {
               </div>
             </div>
 
-            <div className="col-span-full">
+            {/* <div className="col-span-full">
               <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
                 Street address
               </label>
@@ -335,7 +335,7 @@ export default function Example() {
                     setFormData({...formData, address : e.target.value})
                   }
                 />
-              </div>
+              </div> */}
             </div>
 
 
@@ -381,7 +381,7 @@ export default function Example() {
             </div>
 
 
-            <div className="sm:col-span-3 mt-2">
+            {/* <div className="sm:col-span-3 mt-2">
               <label htmlFor="relationship" className="block text-sm font-medium leading-6 text-gray-900">
                 Relationship <span className='imp'>*</span>
               </label>
@@ -405,13 +405,13 @@ export default function Example() {
             </div>
 
 
-          </div>
+          </div> */}
         </div>
 
         <div className="border-b border-gray-900/10 pb-12">
           
           
-        <div className="sm:col-span-3 mt-2">
+        {/* <div className="sm:col-span-3 mt-2">
               <label htmlFor="registrationType" className="block text-sm font-medium leading-6 text-gray-900">
                 Registration Type <span className='imp'>*</span>
               </label>
@@ -432,7 +432,7 @@ export default function Example() {
                   <option value="Coach">Coach</option>
                 </select>
               </div>
-            </div>
+            </div> */}
 
 
         <div className="mt-10 space-y-10 w-fit">
@@ -440,13 +440,14 @@ export default function Example() {
 
           <div className="sm:col-span-3 lg:col-span-2">
               <label htmlFor="aicfId" className="block text-sm font-medium leading-6 text-gray-900">
-                AICF Id
+                AICF Id <span className='imp'>*</span>
               </label>
               <div className="mt-2">
                <input
                    id='aicfId'
                    name='aicfId'
                    type='text'
+                   required
                    autoComplete='Aicf Id'
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-my-green sm:text-sm sm:leading-6"
                   onChange={ (e)=>

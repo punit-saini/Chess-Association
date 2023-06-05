@@ -62,20 +62,6 @@ export default {
         validation : Rule => Rule.required(),
       },
       {
-        name : 'relationship',
-        title : 'Relationship',
-        type : 'string',
-        options: {
-            list: [
-              {title: 'Father', value: 'father'},
-              {title: 'Mother', value: 'mother'},
-              {title: 'Other', value: 'other'},
-            ], 
-          },
-          validation: Rule => Rule.required()
-
-      },
-      {
         name : 'gender',
         title : 'Gender',
         type : 'string',
@@ -96,11 +82,6 @@ export default {
             dateFormat : 'DD-MM-YYYY',
         },
         validation: Rule => Rule.required()
-      },
-      {
-        name : 'address',
-        title : 'Address',
-        type : 'string',
       },
       {
         name : 'district',
@@ -157,20 +138,6 @@ export default {
         type : 'string'
       },
       {
-        name : 'registrationType',
-        title : 'Registration Type',
-        type : 'string',
-        options : {
-            list : [
-                {title : 'Player', value : 'Player'},
-                {title : 'Arbiter', value : 'Arbiter'},
-                {title : 'Coach', value : 'Coach'}
-            ]
-        },
-        validation : Rule => Rule.required(),
-
-      },
-      {
         name : 'profileUrl',
         title : 'Profile Photo Url',
         type : 'string',
@@ -195,12 +162,7 @@ export default {
         title : 'Payment Id',
         type : 'string',
       },
-      {
-        name: 'length',
-        type: 'number',
-        title: 'Membership Length (in years)',
-        validation: Rule => Rule.required().min(1).max(5)
-      },
+    
       {
         name: 'status',
         type: 'string',
