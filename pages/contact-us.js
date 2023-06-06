@@ -45,8 +45,8 @@ export default  function Contact() {
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Contact Information</h2>
               <p className="text-lg text-gray-600 mb-4">Chhattisgarh State Chess Association</p>
-              <p className="text-lg text-gray-600 mb-4">GF - 36, Shyam Plaza, Pandri,</p>
-              <p className="text-lg text-gray-600 mb-4">Raipur, Chhattisgarh 492004</p>
+              <p className="text-lg text-gray-600 mb-4"> Ramadhim Marg, Rajnandgaon Marg</p>
+              <p className="text-lg text-gray-600 mb-4">Chhattisgarh, 491441</p>
               <p className="text-lg text-gray-600 mb-4">Contact No: 9876543210</p>
               <p className="text-lg text-gray-600 mb-4">Email: support@chhattisgarhchess.com</p>
             </div>

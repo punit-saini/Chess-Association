@@ -340,7 +340,7 @@ export default function Example() {
 
 
 
-            <div className="sm:col-span-2">
+            <div className="sm:col-span-2 mt-8">
               <label htmlFor="pincode" className="block text-sm font-medium leading-6 text-gray-900">
                 ZIP / Postal code <span className='imp'>*</span>
               </label>
@@ -361,7 +361,7 @@ export default function Example() {
 
 
 
-            <div className="sm:col-span-2">
+            <div className="sm:col-span-2 mt-8">
               <label htmlFor="parentName" className="block text-sm font-medium leading-6 text-gray-900">
                  Parent/Guardian Name <span className='imp'>*</span>
               </label>
@@ -546,7 +546,7 @@ export default function Example() {
 
 
 
-            <div className="sm:col-span-3 my-12">
+            {/* <div className="sm:col-span-3 my-12">
               <label htmlFor="length" className="block text-sm font-medium leading-6 text-gray-900">
                 Registration Duration In Years <span className='imp'>*</span>
               </label>
@@ -570,8 +570,8 @@ export default function Example() {
                   <option value='4'>4</option>
                   <option value='5'>5</option>
                 </select>
-              </div>
-
+              </div> */}
+            {/* </div> */}
 
 
 
@@ -579,7 +579,7 @@ export default function Example() {
               <label htmlFor="cover" className="block text-sm font-medium leading-6 text-gray-900">
                 Payment Proof <span className='imp'>*</span>
               </label>
-              <p className='text-sm my-3'>Pay the Registration fee ({amount} ₹) on this QR Code <span onClick={handleShowId} className='underline cursor-pointer'>here</span> and upload the screenshot</p>
+              <p className='text-sm my-3'>Pay the Registration fee ({150} ₹) on this QR Code <span onClick={handleShowId} className='underline cursor-pointer'>here</span> and upload the screenshot</p>
               <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                 <div className="text-center">
                 <p className='my-1 text-xs'>{paymentProof?.name}</p>
@@ -613,7 +613,7 @@ export default function Example() {
 
 
 
-        </div>
+        
         </div>
 
         
@@ -676,10 +676,10 @@ export default function Example() {
                           <p className='font-semibold'>Affiliated To All India Chess Federation <br /> Recognised By Sports and Youth Welfate C.G Govt.</p>
                     </div>
                     <img className=' w-4/5 md:w-3/5 mx-auto my-4' src='CGSCA SCR.jpeg' />
+                    <h1 className='mb-4'>UPI ID : 9827161369m@pnb</h1>
                 </div>
 
                  
-
                            
                     <button
                             type="button"

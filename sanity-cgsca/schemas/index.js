@@ -8,5 +8,6 @@ import contact from "./contact"
 import marquee from "./marquee"
 import tournament from "./tournament"
 import districtAssociations from "./district-associations"
+import otherPayments from "./other-payments"
 
-export const schemaTypes = [banner, gallery, registration, notice,news, blog, contact, marquee, tournament, districtAssociations]
+export const schemaTypes = [banner, gallery, registration, notice,news, blog, contact, marquee, tournament, districtAssociations, otherPayments]

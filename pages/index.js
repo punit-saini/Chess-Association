@@ -211,20 +211,25 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
     </div>
     <div className="mt-8  md:mt-0">
       <div className="bg-white p-6">
-        <img className="w-48 h-48 mx-auto mb-6" src={'../logo.png'} alt="CGSCA Logo"/>
+        {/* <img className="w-48 h-48 mx-auto mb-6" src={'../logo.png'} alt="CGSCA Logo"/> */}
         <div className="text-center text-2xl text-gray-800 font-bold mb-4">
           Chhattisgarh State Chess Association
         </div>
-        <div className="text-center text-lg text-gray-600 font-medium mb-4">
+        {/* <div className="text-center text-lg text-gray-600 font-medium mb-4">
           Affiliated to All India Chess Federation
         </div>
         <div className="text-center text-lg text-gray-600 font-medium mb-4">
           Recognized by Sports and Youth Welfare Chhattisgarh Government
+        </div> */}
+        <div className=" flex-col justify-center mx-auto text-center">
+             <img src="CGSCA SCR.jpeg" className="mx-auto " />
+             <h1 className='m-4 font-bold text-xl'>UPI ID : 9827161369m@pnb</h1>
+             <Link href={'/payments'} type="button" className=" w-fit mt-4 text-white bg-gradient-to-tr drop-shadow-lg from-my-green to-my-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 hover:bg-black text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Make Payments</Link>
         </div>
-        <div className="flex justify-center space-x-4 mt-4">
+        {/* <div className="flex justify-center space-x-4 mt-4">
           <img className="w-12 h-12" src="../aicf-logo.webp" alt="AICF Logo"/>
           <img className="w-12 h-12" src="../government-logo.webp" alt="Sports and Youth Welfare CG Logo"/>
-        </div>
+        </div> */}
       </div>
     </div>
   </div>
