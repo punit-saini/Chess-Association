@@ -213,7 +213,8 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
       <div className="bg-white p-6">
         <img className="w-48 h-48 mx-auto mb-6" src={'../logo.png'} alt="CGSCA Logo"/>
         <div className="text-center text-2xl text-gray-800 font-bold mb-4">
-          Chhattisgarh State Chess Association
+          Chhattisgarh Rajya Shatranj Sangh
+          <span className="text-sm">REG NO. 155, DATED 16 MARCH 2001</span>
         </div>
         <div className="text-center text-lg text-gray-600 font-medium mb-4">
           Affiliated to All India Chess Federation
