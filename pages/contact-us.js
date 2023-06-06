@@ -44,11 +44,10 @@ export default  function Contact() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Contact Information</h2>
-              <p className="text-lg text-gray-600 mb-4">Chhattisgarh State Chess Association</p>
-              <p className="text-lg text-gray-600 mb-4"> Ramadhim Marg, Rajnandgaon Marg</p>
+              <p className="text-lg text-gray-600 mb-4">Chhattisgarh Rajya Shatranj Sangh</p>
+              <p className="text-lg text-gray-600 mb-4">Ramadhim Marg, Rajnandgaon Marg</p>
               <p className="text-lg text-gray-600 mb-4">Chhattisgarh, 491441</p>
-              <p className="text-lg text-gray-600 mb-4">Contact No: 9876543210</p>
-              <p className="text-lg text-gray-600 mb-4">Email: support@chhattisgarhchess.com</p>
+              <p className="text-lg text-gray-600 mb-4">Email: chhattisgarhchess@gmail.com</p>
             </div>
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Send us a Message</h2>
@@ -95,7 +94,8 @@ export default  function Contact() {
                 className="w-5/6 mx-auto my-10 h-96" 
                 src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=GF%20-%2036,%20Shyam%20Plaza,%20Pandri,%20Raipur,%20Chhattisgarh%20492004+(Chhattisgarh%20State%20Chess%20Associationess%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" 
             ></iframe>
-</div>
+            
+         </div>
 
          </div>
 
