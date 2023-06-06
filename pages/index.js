@@ -212,8 +212,9 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
     <div className="mt-8  md:mt-0">
       <div className="bg-white p-6">
         <img className="w-48 h-48 mx-auto mb-6" src={'../logo.png'} alt="CGSCA Logo"/>
-        <div className="text-center text-2xl text-gray-800 font-bold mb-4">
+        <div className="text-center text-xl text-gray-800 font-bold mb-4">
           Chhattisgarh Rajya Shatranj Sangh
+          <br/>
           <span className="text-sm">REG NO. 155, DATED 16 MARCH 2001</span>
         </div>
         <div className="text-center text-lg text-gray-600 font-medium mb-4">
