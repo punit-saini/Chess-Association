@@ -4,34 +4,33 @@ import React from "react";
 export default function(){
 
 
-    const commissionMembers = [
-        {
-          name: 'Shree. Alankar Bhivgade',
-          position: 'Chairman',
-        },
-        {
-          name: 'Mr. Anish Anshari',
-          position: 'Chairman',
-        },
-        {
-          name: 'Shree Ravikumar',
-          position: 'Vice Chairman',
-        },
-        {
-          name: 'Shree Rockey Devaangan',
-          position: 'Vice Chairman',
-        },
-        {
-          name: 'Shree Rohit Yadav',
-          position: 'Convenor',
-        },
-        {
-          name: 'Shree Ashutosh Sahu',
-          position: 'Convenor',
-        },
-       
-       
-      ];
+  const commissionMembers = [
+    {
+      name: 'IA Alankar Bhivgade',
+      position: 'Chairman',
+    },
+    {
+      name: 'FA Ravi Kumar',
+      position: 'Vice Chairman',
+    },
+    {
+      name: 'FA Rohit Kumar Yadav',
+      position: 'Convenor',
+    },
+    {
+      name: 'FA Rocky Dewangan',
+      position: '',
+    },
+    {
+      name: 'FA Anish Ansari',
+      position: '',
+    },
+    {
+      name: 'FA Ashutosh Sahu',
+      position: '',
+    },
+];
+
       
     
 
