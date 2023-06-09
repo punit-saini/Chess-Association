@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { client } from '../lib/client'
 import axios from 'axios'
+import { motion as m } from 'framer-motion'
 
 
 export default  function Contact() {
@@ -35,7 +36,12 @@ export default  function Contact() {
          
     }
   return (
-    <div className="bg-gray-100">
+    <m.div className="bg-gray-100"
+    initial={{y : "100%"}}
+    animate={{y : "0%"}}
+    exit={{opacity : 1}}
+    transition={{duration : 0.75, ease: "easeOut"}}
+    >
 
       <div className="max-w-screen-lg mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-semibold text-gray-800 mt-16">Contact Us</h1>
@@ -90,16 +96,14 @@ export default  function Contact() {
            </div>
 
            <div className="w-full">
-            <iframe 
-                className="w-5/6 mx-auto my-10 h-96" 
-                src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=GF%20-%2036,%20Shyam%20Plaza,%20Pandri,%20Raipur,%20Chhattisgarh%20492004+(Chhattisgarh%20State%20Chess%20Associationess%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" 
-            ></iframe>
+            <iframe className='w-5/6 mx-auto my-10 h-96' src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=32WQ+W2C,%20Ramadhin%20Marg,%20Shivnath%20Colony,%20Bharka%20Para,%20Rajnandgaon,%20Chhattisgarh%20491441+(Chhattisgarh%20State%20Chess%20Association)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+            </iframe>
             
          </div>
 
          </div>
 
         </div>
-     </div>
+     </m.div>
   )}
 

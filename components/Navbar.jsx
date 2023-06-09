@@ -3,6 +3,7 @@ import { useStateContext} from '../context/StateContext';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { motion as m } from 'framer-motion';
 
 
 
@@ -25,9 +26,11 @@ export default ()=>{
        
     return( 
        
-       <>
+       <div
+
+       >
             
-<nav className="bg-white text-my-black dark:bg-gray-900 w-full z-20 rounded-t-3xl border-b  dark:border-gray-600">
+<nav className="bg-white text-my-black dark:bg-gray-900 w-full z-50 rounded-t-3xl border-b  dark:border-gray-600">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
   <a href="/" className="flex items-center">
            
@@ -69,7 +72,7 @@ export default ()=>{
       </li>
       
       <li>
-        <a href="/tournament" className="block py-2 pl-3 pr-4 text-my-black hover:bg-gradient-to-tr from-my-green to-my-black hover:text-white rounded md:hover:border-b md:bg-transparent md:hover:text-white  md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Tournament</a>
+        <a href="/tournaments" className="block py-2 pl-3 pr-4 text-my-black hover:bg-gradient-to-tr from-my-green to-my-black hover:text-white rounded md:hover:border-b md:bg-transparent md:hover:text-white  md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Tournaments</a>
       </li>
       <li>
         <a href="/gallery" className="block py-2 pl-3 pr-4 text-my-black hover:bg-gradient-to-tr from-my-green to-my-black hover:text-white rounded md:hover:border-b md:bg-transparent md:hover:text-white  md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Gallery</a>
@@ -100,6 +103,6 @@ export default ()=>{
   </div>
 </nav>
 
-       </>
+       </div>
      )
 }

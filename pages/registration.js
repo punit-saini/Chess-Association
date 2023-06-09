@@ -4,6 +4,7 @@ import React, {useState, useEffect, Fragment, useRef} from 'react'
 import axios from 'axios'
 import { Dialog, Transition } from '@headlessui/react'
 import Link from 'next/link'
+import { motion as m } from 'framer-motion'
 
 
 export default function Example() {
@@ -107,7 +108,12 @@ export default function Example() {
   return (
 
 
-      <>
+      <m.div 
+      initial={{y : "100%"}}
+      animate={{y : "0%"}}
+      exit={{opacity : 1}}
+      transition={{duration : 0.75, ease: "easeOut"}}
+      >
         
 
         
@@ -704,7 +710,7 @@ export default function Example() {
       <div className=" items-center rounded-md text-lg bg-green-50 px-2 py-1 font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
         Form Submitted. Should be approved in couple of days. 
       </div>
-      <Link className=' underline text-xs mt-5' href={'/'}>Take me to the home route</Link>
+      <Link className=' underline text-xs mt-5' href={'/players-list'}>Show me the Players List</Link>
       </div>}
 
 
@@ -717,7 +723,7 @@ export default function Example() {
    
 
 
-                </>
+                </m.div>
   
   )
 }

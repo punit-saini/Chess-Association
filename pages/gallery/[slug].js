@@ -3,11 +3,19 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { client } from '../../lib/client'
 import { urlFor } from '../../lib/client'
+import { motion as m } from "framer-motion";
+
 
 export default function slug({post}){
     return (
-        <>
-            <div className="bg-gray-100 min-h-screen">
+        <m.div
+        initial={{y : "100%"}}
+        animate={{y : "0%"}}
+        exit={{opacity : 1}}
+        transition={{duration : 0.75, ease: "easeOut"}}
+ 
+        >
+            <div className="bg-gray-100 min-h-screen py-8">
                 <header className="py-12 lg:py-16 w-5/6 mx-auto md:w-4/6 lg:w-1/2">
                
                     <h1 className="text-4xl sm:text-5xl font-bold text-center leading-loose text-gray-800 mb-6">{post?.title}</h1>
@@ -32,7 +40,7 @@ export default function slug({post}){
                   </div>
               
               </div>
-        </>
+        </m.div>
     )
 }
 

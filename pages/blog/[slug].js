@@ -2,6 +2,7 @@ import moment from 'moment';
 import Image from 'next/image';
 import { client } from '../../lib/client';
 import { urlFor } from '../../lib/client';
+import { motion as m } from 'framer-motion';
 
 export default function Blog({blog}) {
    const { title, author, uploadDate, headerImage, content } = blog
@@ -9,7 +10,12 @@ export default function Blog({blog}) {
     // {console.log('k')}
   return (
     
-    <div className="bg-white min-h-screen shadow-md rounded-md overflow-hidden flex flex-col mx-auto my-16">
+    <m.div
+    initial={{y : "100%"}}
+    animate={{y : "0%"}}
+    exit={{opacity : 1}}
+    transition={{duration : 0.75, ease: "easeOut"}}
+     className="bg-white min-h-screen shadow-md rounded-md overflow-hidden flex flex-col mx-auto my-16">
 
         <div className="h-64 sm:h-auto mx-auto md:w-[650px] md:mt-12 my-6 flex-col sm:w-1/2 ">
             <img
@@ -33,7 +39,7 @@ export default function Blog({blog}) {
             </div>
         </div>
 
-   </div>
+   </m.div>
 
 
   );

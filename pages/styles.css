@@ -1,9 +1,9 @@
-/* body {
+body {
     margin: 0;
     font-family: "Inter", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  } */
+  }
   
   [class^="number-slide"],
   [class*=" number-slide"] {
@@ -128,6 +128,32 @@
   .arrow--disabled {
     fill: rgba(255, 255, 255, 0.5);
   }
+
+
+  /* animation */
+
+  .fade-in {
+    opacity: 1 !important;
+    transform: translate(0);
+    transition: opacity 1s ease-in-out, transform 0.4s ease-in-out;
+  }
+  
+  .component-1 {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  
+  .component-2 {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  
+  .component-3 {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  
   
   @keyframes scrolling {
     0% {
@@ -154,6 +180,6 @@
 
   @media (min-width: 600px) {
     .keen-slider-carousel{
-      height: 400px;
+      height: 500px;
     }
   }

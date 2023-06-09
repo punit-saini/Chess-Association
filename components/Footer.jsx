@@ -1,12 +1,26 @@
+'use client';
 import Link from 'next/link';
+import { useState } from 'react';
+
 
 export default function Footer() {
-  return (
-    <div className=' bg-gray-300'>
 
+
+
+
+
+
+
+  return (
+    <div className=' bg-gray-300'
+    // initial={{y : "100%"}}
+    // animate={{y : "0%"}}
+    // exit={{opacity : 1}}
+    // transition={{duration : 0.75, ease: "easeOut"}}
+    >
    
     <div className='bg-my-grey rounded-b-3xl'>
-    <footer className="bg-gradient-to-b from-my-black to-my-green text-white pt-10  md:rounded-b-3xl">
+    <footer className="bg-gradient-to-t md:bg-gradient-to-r from-gray-700 via-gray-900 to-black text-white pt-10  md:rounded-b-3xl">
       <div className="container px-8 sm:px-10 mx-auto">
         <div className="flex flex-wrap mb-8">
           <div className="w-full sm:w-1/2 lg:w-1/3 mb-4 sm:mb-0">
@@ -82,7 +96,7 @@ export default function Footer() {
               <br />
               Developed by{" "}
               <a
-                href="https://www.linkedin.com/in/punit-saini-2003/"
+                href="https:linktr.ee/punitsaini"
                 className="text-gray-500 hover:text-gray-300 underline"
                 target="_blank"
                 rel="noopener noreferrer"

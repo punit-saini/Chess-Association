@@ -17,11 +17,15 @@ export default async function register(req,res){
         expiryDate.setFullYear(expiryDate.getFullYear() + 1);
         expiryDate.setMonth(2); // 2 represents March (months are zero-based)
         expiryDate.setDate(31);
+        const existingUsers = await client.fetch('*[_type == "register"]');
+      const totalRegistered = existingUsers.length;
         // console.log('date now is :', date)
         const newUser = {
             _type: 'register',
             ...req.body,
-            id : 'CGSCA'+ new Date().toISOString().slice(8,10)+ new Date().toISOString().slice(6,7)+new Date().toISOString().slice(2,4)+Math.floor(Math.random() * 1000) + 1, 
+            id: `CGSCA${new Date().getFullYear()}${(totalRegistered + 1)
+              .toString()
+              .padStart(4, '0')}`, 
             registrationDate,
             expiryDate: expiryDate.toISOString().slice(0, 10),
             status : 'Active',

@@ -7,9 +7,10 @@ import "./styles.css"
 import Router from 'next/router';
 import Loader from '../components/Loader';
 import { Analytics } from '@vercel/analytics/react';
+import { AnimatePresence } from 'framer-motion';
 
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, router }) {
   const [loading, setLoading] = useState(false)
   
     Router.events.on("routeChangeStart",(url)=>{
@@ -27,10 +28,12 @@ function MyApp({ Component, pageProps }) {
           
        {loading && <Loader />}
         {/* <StateContext> */}
+        <AnimatePresence>
           <Layout>
              { !loading &&
-            <Component {...pageProps} /> }
+            <Component key={router.pathname} {...pageProps} /> }
           </Layout>
+        </AnimatePresence>
         {/* </StateContext> */}
           < Analytics />
     </>

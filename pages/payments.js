@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { motion as m } from 'framer-motion';
 
 export default function Payments() {
   const [name, setName] = useState('');
@@ -68,7 +69,14 @@ export default function Payments() {
   };
 
   return (
-    <div className="bg-gray-100">
+    <m.div
+    initial={{y : "100%"}}
+    animate={{y : "0%"}}
+    exit={{opacity : 1}}
+    transition={{duration : 0.75, ease: "easeOut"}}
+     className="bg-gray-100"
+   
+    >
       <div className="max-w-screen-lg mx-auto py-8 px-4 sm:px-6 lg:px-8 min-h-screen">
         <h1 className="text-3xl font-semibold text-gray-800 mt-16">Payments</h1>
         {message.length >= 1 && (
@@ -169,6 +177,6 @@ export default function Payments() {
           </form>}
         </div>
       </div>
-    </div>
+    </m.div>
   );
 }

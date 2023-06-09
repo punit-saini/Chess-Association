@@ -6,6 +6,7 @@ import DataTable from 'react-data-table-component'
 import { Dialog, Transition } from '@headlessui/react'
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import { useRouter } from 'next/router'
+import { motion as m } from 'framer-motion'
 
 const PlayersTable = () => {
 
@@ -141,7 +142,12 @@ const PlayersTable = () => {
   return ( 
          
 
-    <>
+    <m.div
+    initial={{y : "100%"}}
+    animate={{y : "0%"}}
+    exit={{opacity : 1}}
+    transition={{duration : 0.75, ease: "easeOut"}}
+    >
     
 
             <DataTable columns={columns} 
@@ -385,7 +391,7 @@ const PlayersTable = () => {
                     </Transition.Root>
 
 
-    </>
+    </m.div>
     
   
 )}

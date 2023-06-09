@@ -1,14 +1,28 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef} from "react"
 import { useKeenSlider } from "keen-slider/react"
 import Link from "next/link"
 import { urlFor } from '../lib/client'
 import { client } from '../lib/client';
 import { XMarkIcon } from '@heroicons/react/20/solid'
+import { animateScroll as scroll } from "react-scroll";
+import { motion as m } from "framer-motion";
 
 
 export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
+  
   const [currentSlide, setCurrentSlide] = useState(0)
   const [loaded, setLoaded] = useState(false)
+  const duration = 500;
+  
+  const nodeRefs = [
+      useRef(null),
+      useRef(null),
+      useRef(null)
+  ]
+  
+  
+
+  
   const [sliderRef, instanceRef] = useKeenSlider({
     initial: 0,
     slideChanged(slider) {
@@ -18,34 +32,41 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
       setLoaded(true)
     },
   })
-  const animation = { duration: 5000, easing: (t) => t }
+  const animation = { duration: 4000, easing: (t) => t }
 
-        const [verticalSliderRef] = useKeenSlider({
-          loop: true,
-          renderMode: "performance",
-            drag: true,
-            created(s) {
-              s.moveToIdx(1, true, animation)
-            },
-            updated(s) {
-              s.moveToIdx(s.track.details.abs + 2, true, animation)
-            },
-            animationEnded(s) {
-              s.moveToIdx(s.track.details.abs + 2, true, animation)
-            },
-          slides: {
-            origin: "center",
-            perView: 2,
-            spacing: 4,
-            
-          },
-          vertical : true,
-        })
+  // const animation = { duration: 4000, easing: (t) => t }
+  const [verticalSliderRef] = useKeenSlider({
+    loop: true,
+    renderMode: "performance",
+    drag: true,
+    created(s) {
+      s.moveToIdx(1, true, animation)
+    },
+    updated(s) {
+      s.moveToIdx(s.track.details.abs + 2, true, animation)
+    },
+    animationEnded(s) {
+      s.moveToIdx(s.track.details.abs + 2, true, animation)
+    },
+    slides: {
+      origin: "center",
+      perView: 2,
+      spacing: 4,
+    },
+    vertical : true,
+  })
 
   return (
-    <>
+    <m.div
 
+    initial={{y : "100%"}}
+    animate={{y : "0%"}}
+    exit={{opacity : 1}}
+    transition={{duration : 0.75, ease: "easeOut"}}
+    >
+     
    
+
         
 
       <div>
@@ -67,8 +88,12 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
               </div>
             </div>
           </div>  */}
-<div>
-          <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+
+
+
+              
+              <div>
+          <div className="relative isolate flex items-center gap-x-6 z-0 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
       <div
         className="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
         aria-hidden="true"
@@ -116,6 +141,8 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
       </div>
     </div>
     </div>
+       
+   
         
         
          
@@ -125,7 +152,7 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
         {/* Carousel  */}
       
 
-        <div className="navigation-wrapper w-11/12 mx-auto mt-16  lg:w-3/5 lg:mt-24">
+        <div className=" navigation-wrapper w-11/12 lg:w-5/6 mx-auto mt-16">
         <div ref={sliderRef} className="keen-slider keen-slider-carousel rounded-xl">
           {bannerImage[0] && <div className="keen-slider__slide"><img className=" w-full h-[100%]" src={urlFor(bannerImage[0].image).url()} /></div> }
           {bannerImage[1] && <div className="keen-slider__slide"><img className=" w-full h-[100%]" src={urlFor(bannerImage[1].image).url()} /></div> }
@@ -193,11 +220,12 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
           {notices.map((notice) => (
             <div key={notice._id} className="border-b border-gray-300 pb-6">
               <div className="flex items-center space-x-4">
-                <svg className="w-8 h-8 fill-current text-gray-600">
+                {/* <svg className="w-8 h-8 fill-current text-gray-600">
                   <use xlinkHref="/sprite.svg#icon-file-text"></use>
-                </svg>
+                </svg> */}
+                <img src="notice.gif" className="w-8 h-8" />
                 <a href={`${notice.fileURL}?dl=Notice Dated ${notice._updatedAt.slice(0,10)}.pdf`} download={true}  className="text-lg font-bold text-gray-700 hover:underline">
-                 📃  {notice.noticeHeading}
+                  {notice.noticeHeading}
                 </a>
               </div>
               <p className="text-gray-600 font-medium py-2 relative top-3 left-9 px-3 rounded-xl  bg-gray-100 w-fit text-sm mt-2">
@@ -224,7 +252,7 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
         <div className=" flex-col justify-center mx-auto text-center">
              <img src="CGSCA SCR.jpeg" className="mx-auto " />
              <h1 className='m-4 font-bold text-xl'>UPI ID : 9827161369m@pnb</h1>
-             <Link href={'/payments'} type="button" className=" w-fit mt-4 text-white bg-gradient-to-tr drop-shadow-lg from-my-green to-my-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 hover:bg-black text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Make Payments</Link>
+             <Link href={'/payments'} type="button" className=" w-fit mt-4 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Make Payments</Link>
         </div>
         {/* <div className="flex justify-center space-x-4 mt-4">
           <img className="w-12 h-12" src="../aicf-logo.webp" alt="AICF Logo"/>
@@ -267,7 +295,7 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
           </div>
           <div className="flex-1 bg-white p-6 flex flex-col justify-between">
             <div className="flex-1">
-              <Link href={`blog/${blog.slug.current}`} className="block text-xl font-semibold text-gray-900 mb-3 hover:text-my-green transition-colors duration-300">{blog.title}</Link>
+              <Link href={`blog/${blog.slug.current}`} className="block text-xl font-semibold text-gray-900 mb-3 hover:underline hover:underline-offset-4 transition-colors duration-300">{blog.title}</Link>
               <p className="text-base text-gray-500 line-clamp-3">{blog.description}</p>
             </div>
             <div className="mt-6 flex items-center">
@@ -318,7 +346,7 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
   <h1 className="text-center font-semibold text-2xl md:text-3xl leading-8 tracking-wider mb-4">Sponsor Our Event and Make a Difference!</h1>
   <p className="text-center text-md md:text-lg mb-6">By sponsoring our events, you'll be making a positive impact on our mission and helping us achieve our goals. Your support will make these events a success and enable us to continue making a difference.</p>
   <div className="flex justify-center">
-    <a className="py-3 px-6 text-lg font-semibold tracking-wider text-white bg-my-black rounded-lg hover:bg-gray-900 transition duration-200" href="/contact-us">Get in Touch</a>
+    <a className="py-3 px-6 text-base font-semibold tracking-wider text-white bg-my-black rounded-lg hover:bg-gray-900 transition duration-200" href="/contact-us">Get in Touch</a>
   </div>
 </div>
 
@@ -338,7 +366,7 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
 
             
             <div className="overflow-x-auto">
-  <div className="flex flex-wrap justify-center">
+  <div className="flex flex-wrap justify-start">
     {newsArticles.map((newsArticle) => (
       <div
         key={newsArticle._id}
@@ -361,7 +389,7 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
             <a
               href={newsArticle.articleLink}
               target="_blank"
-              className="inline-block bg-gradient-to-tr from-my-black to-my-green hover:bg-black hover:text-my-yellow hover:animate-pulse text-white py-2 px-3 rounded-lg text-sm font-medium"
+              className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 "
             >
               Read more
             </a>
@@ -391,7 +419,7 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
               src={urlFor(galleryPost.image).url()}
               alt={galleryPost.title}
             />
-            <div className="absolute inset-0 flex items-center h-[250px] bg-slate-950 hover:bg-opacity-40 justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute inset-0 flex items-center h-[250px] bg-slate-950 bg-opacity-40 justify-center hover:opacity-0 opacity-100 transition-opacity duration-300">
               <p className="text-center text-white text-lg font-bold">{galleryPost.title}</p>
             </div>
           </div>
@@ -427,7 +455,7 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
 
     
       
-    </>
+    </m.div>
   )
 }
 

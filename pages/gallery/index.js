@@ -3,10 +3,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { urlFor } from '../../lib/client';
 import { client } from '../../lib/client';
+import { motion as m } from 'framer-motion';
 
 export default function Gallery({ posts }) {
   return (
-    <div className='bg-gray-100 pb-24'>
+    <m.div 
+    initial={{y : "100%"}}
+    animate={{y : "0%"}}
+    exit={{opacity : 1}}
+    transition={{duration : 0.75, ease: "easeOut"}}
+     className='bg-gray-100 pb-24'>
     <div className="bg-gray-100 min-h-screen pb-30">
       <header className="py-12 lg:py-16">
           <h1 className="text-4xl sm:text-5xl font-bold text-center text-gray-800 mb-2">Gallery</h1>
@@ -38,7 +44,7 @@ export default function Gallery({ posts }) {
           ))}
         </div>
     </div>
-    </div>
+    </m.div>
   );
 }
 

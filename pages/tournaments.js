@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import { client } from '../lib/client';
+import { motion as m } from 'framer-motion';
 
 export default function HomePage({tournamentsData}) {
 
@@ -64,7 +65,12 @@ export default function HomePage({tournamentsData}) {
       });
 
       return (
-        <div className="bg-gray-100  min-h-screen">
+        <m.div
+        initial={{y : "100%"}}
+        animate={{y : "0%"}}
+        exit={{opacity : 1}}
+        transition={{duration : 0.75, ease: "easeOut"}}
+         className="bg-gray-100  min-h-screen">
           <div className="container w-11/12 md:w-5/6 py-12 mx-auto px-4 sm:px-8 md:px-12 lg:px-16">
             <div className="flex flex-col sm:flex-row items-center justify-between mb-6 sm:mb-8 md:mb-10">
               <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase text-gray-800 mb-2 sm:mb-0">Tournaments</h1>
@@ -128,7 +134,7 @@ export default function HomePage({tournamentsData}) {
               <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800">No tournaments found.</div>
             )}
           </div>
-        </div>
+        </m.div>
       );
 }
 
