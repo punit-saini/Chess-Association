@@ -481,7 +481,7 @@ function Arrow(props) {
 }
 
 
-export async function getServerSideProps(){
+export async function getStaticProps(){
 
   // const marquees = await client.fetch(`*[_type == "marquee"][0...3]`);
   const bannerImage = await client.fetch(`*[_type == "banner"][0...5]`);
