@@ -45,7 +45,7 @@ export default function DistrictChessAssociations({associations}) {
 }
 
 export async function getStaticProps(){
-  const associations = await client.fetch(`*[_type == "districtAssociations"]`);
+  const associations = await client.fetch(`*[_type == "localAssociations"]`);
   return {
     props : {
       associations
