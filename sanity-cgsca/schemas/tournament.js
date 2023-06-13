@@ -24,5 +24,10 @@ export default {
         type : 'string',
         title : 'Tournament Timings'
       },
+      {
+        name : 'file',
+        type : 'file',
+        title : 'File'
+      },
     ]
   }

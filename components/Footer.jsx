@@ -61,7 +61,7 @@ export default function Footer() {
               </li>
               <li className="mb-2">
                 
-                  <Link href={"about-us/office-bearers"} className="text-sm hover:underline">Office Bearers</Link>
+                  <Link href={"/about-us/office-bearers"} className="text-sm hover:underline">Office Bearers</Link>
                 
               </li>
               <li>
@@ -95,14 +95,14 @@ export default function Footer() {
               <span className=' text-white text-base mt-2'> &copy; { new Date().getFullYear()} CGSCA | All rights reserved.</span>
               <br />
               Developed by{" "}
-              <a
+              <Link
                 href="https:linktr.ee/punitsaini"
                 className="text-gray-500 hover:text-gray-300 underline"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Punit
-              </a>
+              </Link>
             </p>
         
 
