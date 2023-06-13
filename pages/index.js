@@ -56,6 +56,17 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
     vertical : true,
   })
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (instanceRef.current) {
+        instanceRef.current.next();
+      }
+    }, 4000);
+  
+    return () => clearInterval(interval);
+  }, [instanceRef]);
+  
+
   return (
     <m.div
 
