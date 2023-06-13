@@ -96,7 +96,7 @@ export default function Footer() {
               <br />
               Developed by{" "}
               <Link
-                href="https:linktr.ee/punitsaini"
+                href="https://linktr.ee/punitsaini"
                 className="text-gray-500 hover:text-gray-300 underline"
                 target="_blank"
                 rel="noopener noreferrer"
