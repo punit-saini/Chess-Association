@@ -13,19 +13,19 @@ export default {
         name : 'address',
         type : 'string',
         title : 'Address',
-        validation : Rule => Rule.required()
+        // validation : Rule => Rule.required()
       },
       {
         name : 'contactPerson',
         type : 'string',
         title : 'Contact Person',
-        validation : Rule => Rule.required()
+        // validation : Rule => Rule.required()
       },
       {
         name : 'phone',
         type : 'string',
         title : 'Phone',
-        validation : Rule => Rule.required()
+        // validation : Rule => Rule.required()
       },
       {
         name : 'email',
