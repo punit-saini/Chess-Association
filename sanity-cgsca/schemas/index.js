@@ -11,4 +11,4 @@ import districtAssociations from "./district-associations"
 import otherPayments from "./other-payments"
 import localAssociations from "./local-associations"
 
-export const schemaTypes = [banner, gallery, registration, notice,news, blog, contact, marquee, tournament, otherPayments, localAssociations, districtAssociations]
+export const schemaTypes = [banner, gallery, registration, notice,news, blog, contact, marquee, tournament, otherPayments, localAssociations]
