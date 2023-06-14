@@ -29,34 +29,36 @@ export default function HomePage({ tournamentsData }) {
   }
 
   const handleRegister = async (userId, userName) => {
-
-    console.log('inside handleRegiser')
+    console.log('inside handleRegister');
+    
     const tournamentQuery = `*[_type == 'tournament' && name == "${registrationData.name}"]`;
-
     const tournament = await client.fetch(tournamentQuery);
-
-    if (!tournament) {
+  
+    if (!tournament || !tournament.length) {
       console.error('Tournament not found!');
       // Handle the case when the tournament is not found, display an error message, etc.
       return;
     }
-
-    console.log('tournament is this ', tournament)
-
+  
+    console.log('tournament is this', tournament);
+  
     const newRegisteredStudent = {
       CGSCA_id: userId,
       name: userName,
     };
-
+  
     const updatedTournament = {
-      ...tournament,
-      registeredStudent: [...tournament?.registeredStudent, newRegisteredStudent],
+      ...tournament[0],
+      registeredStudent: [...tournament[0].registeredStudent, newRegisteredStudent],
     };
-
-    const updateQuery = `*[_id == $id]`;
-    await client.patch(updatedTournament._id).set(updatedTournament).commit();
+  
+    const updateQuery = tournament[0]._id;
+  
+    await client.patch(updateQuery).set(updatedTournament).commit();
+  
     console.log('Registration successful!');
-  }
+  };
+  
 
   const handleMonthFilter = (e) => {
     const month = e.target.value;
@@ -163,10 +165,10 @@ export default function HomePage({ tournamentsData }) {
     />
   </svg>
 </Link>
-{/* <p onClick={()=> 
+<p onClick={()=> 
 {setRegistrationData(tournament); 
 setOpen(true);}
-}>Register</p> */}
+}>Register</p>
 
               </div>
             ))}
