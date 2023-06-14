@@ -165,10 +165,10 @@ export default function HomePage({ tournamentsData }) {
     />
   </svg>
 </Link>
-<p onClick={()=> 
+{/* <p onClick={()=> 
 {setRegistrationData(tournament); 
 setOpen(true);}
-}>Register</p>
+}>Register</p> */}
 
               </div>
             ))}
