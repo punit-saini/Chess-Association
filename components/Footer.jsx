@@ -27,7 +27,7 @@ export default function Footer() {
             <img src='../logo.png' width={200} height={200} className=' bg-white p-2 mb-3 rounded-full' />
             <h3 className="text-lg font-bold mb-2">Chhattisgarh State Chess Association</h3>
             <p className="text-sm text-my-grey leading-5">
-              Ramadhim Marg, Rajnandgaon, Chhattisgarh, 491441
+              Ramadhin Marg, Rajnandgaon, Chhattisgarh, 491441
             </p>
           </div>
           <div className="w-full sm:w-1/2 lg:w-1/3 mb-4 sm:mb-0">
@@ -46,7 +46,7 @@ export default function Footer() {
               </li>
               <li className="mb-2">
                 
-                  <Link href={"/tournament"} className="text-sm hover:underline">Tournaments</Link>
+                  <Link href={"/tournaments"} className="text-sm hover:underline">Tournaments</Link>
                 
               </li>
               <li className="mb-2">

@@ -253,8 +253,10 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
         <img className="w-24 h-24 mx-auto mb-2" src={'../logo.png'} alt="CGSCA Logo"/>
         <div className="text-center text-xl text-gray-800 font-bold mb-2">
           Chhattisgarh Rajya Shatranj Sangh
+
         </div>
         <div className="text-center text-base text-gray-600 font-medium mb-2">
+          REG NO. 155/2001 <br/>
           Affiliated to All India Chess Federation
         </div>
         <div className="text-center text-base text-gray-600 font-medium mb-2">

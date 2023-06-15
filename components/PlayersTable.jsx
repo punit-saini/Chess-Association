@@ -213,10 +213,17 @@ const PlayersTable = () => {
                       </Dialog.Title>
                       <div className="mt-2 pt-3 flex gap-4 justify-between mx-auto flex-col md:flex-row lg:flex-row">
                         <div className=''>
-                            <img className='w-[150px] h-[200px] mx-auto' src={userDetail.profileUrl} />
+                        <img
+                              className='w-[150px] h-[200px] mx-auto'
+                              src={userDetail.profileUrl}
+                              onError={(e) => {
+                                e.target.src = 'placeholder.jpg';
+                                e.target.onerror = null;
+                              }}
+                            />
                         </div>
                         <div className='mx-auto mt-4 flex flex-col gap-2 mb-3 text-left'>
-                             <p><span className=' font-bold'>CGSA ID : </span>{userDetail.id}</p>
+                             <p><span className=' font-bold'>CGSCA ID : </span>{userDetail.id}</p>
                              <p><span className=' font-bold'>Parent Name : </span>{userDetail.parentName}</p>
                              <p><span className=' font-bold'>Gender : </span>{userDetail.gender}</p>
                              <p><span className=' font-bold'>District : </span>{userDetail.district}</p>
