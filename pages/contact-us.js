@@ -51,7 +51,7 @@ export default  function Contact() {
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Contact Information</h2>
               <p className="text-lg text-gray-600 mb-4">Chhattisgarh Rajya Shatranj Sangh</p>
-              <p className="text-lg text-gray-600 mb-4">Ramadhim Marg, Rajnandgaon</p>
+              <p className="text-lg text-gray-600 mb-4">Ramadhin Marg, Rajnandgaon</p>
               <p className="text-lg text-gray-600 mb-4">Chhattisgarh, 491441</p>
               <p className="text-lg text-gray-600 mb-4">Email: chhattisgarhstatechess@gmail.com</p>
             </div>
