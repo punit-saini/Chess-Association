@@ -13,6 +13,7 @@ export default async function register(req,res){
 
         const registrationDate = new Date().toISOString().slice(0, 10);
         const length = parseInt(req.body.length);
+        // const idYear= new Date().getFullYear().toString()
         const expiryDate = new Date(registrationDate);
         expiryDate.setFullYear(expiryDate.getFullYear() + 1);
         expiryDate.setMonth(2); // 2 represents March (months are zero-based)
@@ -23,7 +24,7 @@ export default async function register(req,res){
         const newUser = {
             _type: 'register',
             ...req.body,
-            id: `CGSCA${new Date().getFullYear().slice(2,4)}${(totalRegistered + 1)
+            id: `CGSCA${new Date().getFullYear().toString().slice(2,4)}${(totalRegistered + 1)
               .toString()
               .padStart(4, '0')}`, 
             registrationDate,
