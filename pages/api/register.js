@@ -23,7 +23,7 @@ export default async function register(req,res){
         const newUser = {
             _type: 'register',
             ...req.body,
-            id: `CGSCA${new Date().getFullYear()}${(totalRegistered + 1)
+            id: `CGSCA${new Date().getFullYear().slice(2,4)}${(totalRegistered + 1)
               .toString()
               .padStart(4, '0')}`, 
             registrationDate,
