@@ -19,7 +19,10 @@ export default function slug({post}){
                 <header className="py-12 lg:py-16 w-5/6 mx-auto md:w-4/6 lg:w-1/2">
                
                     <h1 className="text-4xl sm:text-5xl font-bold text-center leading-loose text-gray-800 mb-6">{post?.title}</h1>
-                    <p className="text-xl text-gray-600 text-center mb-6">{post?.description[0]?.children[0]?.text}</p>
+                    <p className="text-xl text-gray-600 text-center mb-6">
+  {post?.description?.[0]?.children?.[0]?.text || ''}
+</p>
+
                
                 </header>
                

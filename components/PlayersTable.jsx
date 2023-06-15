@@ -130,9 +130,9 @@ const PlayersTable = () => {
 
     useEffect(()=>{
          const result = players.filter(player => {
-        
-            const response = player.firstName.toLowerCase().match(search.toLowerCase());
-            if(!response) return player.lastName.toLowerCase().match(search.toLowerCase());
+             const name = player.firstName + player.middleName + player.lastName;
+            const response = name.toLowerCase().match(search.toLowerCase());
+            if (!response) return  player.id.toLowerCase().match(search.toLowerCase());
             return response
          })
         //  console.log('result is : ', result, 'players is : ', players, 'search is : ', search)
@@ -199,7 +199,7 @@ const PlayersTable = () => {
                     </div>
                     <div className='flex flex-col justify-center gap-2 leading-6'>
                           <h1 className=' text-xl font-bold'>Chhattisgarh State Chess Association</h1>
-                          <p className='font-semibold'>Affiliated To All India Chess Federation <br /> Recognised By Sports and Youth Welfate C.G Govt.</p>
+                          <p className='font-semibold'>Affiliated To All India Chess Federation <br /> Recognised By Sports and Youth Welfare C.G Govt.</p>
                     </div>
                 </div>
 

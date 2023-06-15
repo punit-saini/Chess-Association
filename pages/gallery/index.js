@@ -49,7 +49,7 @@ export default function Gallery({ posts }) {
 }
 
 export async function getServerSideProps(){
-  const posts = await client.fetch(`*[_type == "gallery"] | order(_createdAt desc)[0..4]{title, slug, image[0], _id}`);
+  const posts = await client.fetch(`*[_type == "gallery"] | order(_createdAt desc){title, slug, image[0], _id}`);
   // console.log('posts are ', posts)
     return {
         props : {

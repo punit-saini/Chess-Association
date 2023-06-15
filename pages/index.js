@@ -250,20 +250,20 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
     </div>
     <div className="mt-8  md:mt-0">
       <div className="bg-white p-6">
-        {/* <img className="w-48 h-48 mx-auto mb-6" src={'../logo.png'} alt="CGSCA Logo"/> */}
-        <div className="text-center text-2xl text-gray-800 font-bold mb-4">
+        <img className="w-24 h-24 mx-auto mb-2" src={'../logo.png'} alt="CGSCA Logo"/>
+        <div className="text-center text-xl text-gray-800 font-bold mb-2">
           Chhattisgarh Rajya Shatranj Sangh
         </div>
-        {/* <div className="text-center text-lg text-gray-600 font-medium mb-4">
+        <div className="text-center text-base text-gray-600 font-medium mb-2">
           Affiliated to All India Chess Federation
         </div>
-        <div className="text-center text-lg text-gray-600 font-medium mb-4">
+        <div className="text-center text-base text-gray-600 font-medium mb-2">
           Recognized by Sports and Youth Welfare Chhattisgarh Government
-        </div> */}
+        </div>
         <div className=" flex-col justify-center mx-auto text-center">
-             <img src="CGSCA SCR.jpeg" className="mx-auto " />
+             <img src="CGSCA SCR.jpeg" className="mx-auto w-36 h-36 " />
              <h1 className='m-4 font-bold text-xl'>UPI ID : 9827161369m@pnb</h1>
-             <Link href={'/payments'} type="button" className=" w-fit mt-4 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Make Payments</Link>
+             <Link href={'/payments'} type="button" className=" w-fit mt-2 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Make Payments</Link>
         </div>
         {/* <div className="flex justify-center space-x-4 mt-4">
           <img className="w-12 h-12" src="../aicf-logo.webp" alt="AICF Logo"/>
@@ -498,8 +498,8 @@ export async function getStaticProps(){
   const bannerImage = await client.fetch(`*[_type == "banner"][0...5]`);
   const blogs = await client.fetch(`*[_type == "blog"] | order(_createdAt desc)[0..9]{author,title, uploadDate, slug, _id, headerImage}`);
   const notices = await client.fetch(`*[_type == "notice"] | order(_createdAt desc)[0..9]{title, "fileURL" : file.asset->url, _updatedAt, noticeHeading, _id}`);
-  const newsArticles = await client.fetch(`*[_type == "news"] | order(_createdAt desc)[0..4]`);
-  const galleryPosts = await client.fetch(`*[_type == "gallery"] | order(_createdAt desc)[0..4]{title, slug, image[0], _id}`);
+  const newsArticles = await client.fetch(`*[_type == "news"] | order(_createdAt desc)[0..5]`);
+  const galleryPosts = await client.fetch(`*[_type == "gallery"] | order(_createdAt desc)[0..5]{title, slug, image[0], _id}`);
   //  console.log('marquees is :  ','\n banner Images are : ', bannerImage, ' \n blog is : ', blogs, '\n notices are : ', notices, '\n gallery data is : ', galleryPosts);
   return {
     props : {
