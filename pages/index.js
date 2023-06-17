@@ -3,7 +3,7 @@ import { useKeenSlider } from "keen-slider/react"
 import Link from "next/link"
 import { urlFor } from '../lib/client'
 import { client } from '../lib/client';
-import { XMarkIcon } from '@heroicons/react/20/solid'
+// import { XMarkIcon } from '@heroicons/react/20/solid'
 import { animateScroll as scroll } from "react-scroll";
 import { motion as m } from "framer-motion";
 
