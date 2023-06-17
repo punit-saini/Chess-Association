@@ -5,7 +5,7 @@ import { motion as m } from 'framer-motion';
 import { Dialog, Transition } from '@headlessui/react'
 import Link from 'next/link';
 import axios from 'axios';
-import { LocationMarkerIcon, CalendarIcon, DocumentTextIcon, ArrowRightIcon } from '@heroicons/react/solid';
+// import { LocationMarkerIcon, CalendarIcon, DocumentTextIcon, ArrowRightIcon } from '@heroicons/react/solid';
 // import { DocumentTextIcon, ArrowRightIcon, LocationMarkerIcon } from '@heroicons/react/outline';
 
 export default function HomePage({ tournamentsData }) {
@@ -152,12 +152,19 @@ export default function HomePage({ tournamentsData }) {
         <div className="flex flex-col items-start justify-end">
           
         <div className="flex items-center text-gray-600 mb-2">
-  <LocationMarkerIcon className="h-5 w-5 flex-shrink-0 mr-2 text-gray-400" />
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 flex-shrink-0 mr-2 text-gray-400">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+        </svg>
+
   <span className="text-sm">{tournament.location}</span>
 </div>
 
               <div className="flex items-center text-gray-600 mb-4">
-                <CalendarIcon className="h-5 w-5 mr-2 text-gray-400" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5 mr-2 text-gray-400">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+              </svg>
+
                 <span className="text-sm">
                   {moment(tournament.date).format('MMM Do, YYYY')} - {tournament.time}
                 </span>
@@ -168,7 +175,10 @@ export default function HomePage({ tournamentsData }) {
             className="flex items-center text-gray-600 hover:text-gray-800 transition duration-200 ease-in-out focus:outline-none mb-2"
           >
             <span className="mr-1 bg-gray-100 rounded-full p-1">
-              <DocumentTextIcon className="w-4 h-4 text-gray-600" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 text-gray-600">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+            </svg>
+
             </span>
             <span className="ml-2 font-medium underline underline-offset-4">Details</span>
           </a>
@@ -180,7 +190,10 @@ export default function HomePage({ tournamentsData }) {
             className="text-white bg-my-green mt-2 hover:bg-my-black py-2 px-4 rounded-lg text-sm font-medium focus:outline-none"
           >
             Register
-            <ArrowRightIcon className="w-4 h-4 inline ml-1 mb-0.5" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 inline ml-1 mb-0.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+
           </button>
         </div>
       </div>
@@ -225,7 +238,12 @@ export default function HomePage({ tournamentsData }) {
           <h1 className="text-3xl font-bold text-gray-900">{registrationData.name}</h1>
           <h2 className="text-lg font-medium text-gray-700 mt-2">{registrationData.location}</h2>
           <div className="flex items-center mt-4">
-            <LocationMarkerIcon className="h-5 w-5 mr-2 text-gray-400" />
+            {/* <LocationMarkerIcon className="h-5 w-5 mr-2 text-gray-400" /> */}
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5 mr-2 text-gray-400">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+</svg>
+
 
             <span className="text-gray-600 text-sm">
               {moment(registrationData.date).format('MMM Do, YYYY')}
