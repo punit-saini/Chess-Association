@@ -18,6 +18,7 @@ export default function HomePage({ tournamentsData }) {
   const [apiResponse, setApiResponse]=useState([]);
   const [message, setMessage]=useState('');
   const [isRegistering, setIsRegistering]= useState(false)
+  const [notFound, setNotFound]= useState(false)
 
   const handleFilterChange = (e) => {
     setFilter(e.target.value);
@@ -25,19 +26,26 @@ export default function HomePage({ tournamentsData }) {
 
   const handleQueryChange = async (e) => {
     setSearchQuery(e.target.value)
+    
+  }
+
+  const handleSearchClick = async (e)=> {
     if(searchQuery.length<=3){
       setApiResponse([]);
-
     }
   else {
     //  console.log('in here', searchQuery)
     const query = `*[_type == "register" && (id match "${searchQuery}*" || firstName match "${searchQuery}*")]`;
     const response = await client.fetch(query);
+    if(response.length<1) {
+
+      setNotFound(true)
+      return
+    }
     setApiResponse(response)
+    setNotFound(false)
     // console.log('response is ', apiResponse, 'and respone is ', response, '\n\n')
   }
-
-    
   }
 
   const handleRegister = async (userId, userName) => {
@@ -66,6 +74,45 @@ export default function HomePage({ tournamentsData }) {
     }
   
   };
+
+
+  const handleDownloadCSV = async (tournamentName) => {
+    try {
+      // Fetch the registered players list for the selected tournament
+      const query = `*[_type == "tournament" && name=="${tournamentName}"]`;
+       const response = await client.fetch(query);
+      if (!response) {
+        throw new Error('Failed to fetch registered players');
+      }
+      // const data = await response[0].registeredStudent.json();
+      console.log('data is ', response[0].registeredStudent)
+  
+      // Convert the registered players list to CSV format
+      const csvContent = convertToCSV(response[0].registeredStudent);
+  
+      // // Create a Blob from the CSV content
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  
+      // // Generate a unique filename for the CSV file
+      // const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+      const filename = `registered_players_${tournamentName}.csv`;
+  
+      // // Create a temporary link element
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+  
+      // // Programmatically click the link to trigger the download
+      link.click();
+  
+      // // Cleanup the temporary link
+      URL.revokeObjectURL(link.href);
+      link.remove();
+    } catch (error) {
+      console.error('Failed to download registered players list:', error);
+    }
+  };
+  
   
 
   const handleMonthFilter = (e) => {
@@ -179,9 +226,23 @@ export default function HomePage({ tournamentsData }) {
               <path strokeLinecap="round" strokeLinejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
             </svg>
 
+
             </span>
-            <span className="ml-2 font-medium underline underline-offset-4">Details</span>
+            <span className="ml-2 font-medium text-sm ">Details</span>
           </a>
+          <button
+             onClick={(e)=> {handleDownloadCSV(tournament.name)}}
+            className="flex items-center text-gray-600 hover:text-gray-800 transition duration-200 ease-in-out focus:outline-none mb-2"
+          >
+            <span className="mr-1 bg-gray-100 rounded-full p-1">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 text-gray-600">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+            </svg>
+
+
+            </span>
+            <span className="ml-2 font-medium text-sm">Players List</span>
+          </button>
           <button
             onClick={() => {
               setRegistrationData(tournament);
@@ -211,7 +272,7 @@ export default function HomePage({ tournamentsData }) {
 
 
       <Transition.Root show={open} as={Fragment}>
-  <Dialog as="div" className="fixed inset-0 flex items-center justify-center z-50" onClose={setOpen}>
+  <Dialog as="div" className="fixed inset-0 flex overflow-y-scroll items-center justify-center z-50" onClose={setOpen}>
     <Transition.Child
       as={Fragment}
       enter="transition-opacity ease-out duration-300"
@@ -233,12 +294,11 @@ export default function HomePage({ tournamentsData }) {
       leaveFrom="opacity-100 scale-100"
       leaveTo="opacity-0 scale-95"
     >
-      <div className="bg-white rounded-lg overflow-hidden shadow-xl w-3/4 sm:w-5/6 md:w-2/3 lg:w-1/2 xl:w-2/5">
-        <div className="px-8 py-6">
-          <h1 className="text-3xl font-bold text-gray-900">{registrationData.name}</h1>
-          <h2 className="text-lg font-medium text-gray-700 mt-2">{registrationData.location}</h2>
+      <div className="bg-white rounded-lg  shadow-xl w-[95%] overflow-scroll md:w-2/3 lg:w-1/2 xl:w-2/5">
+        <div className="px-8 py-6 overflow-scroll overflow-y-scroll">
+          <h1 className="text-2xl font-bold text-gray-900">{registrationData.name}</h1>
+          <h2 className=" text-base font-medium text-gray-700 mt-2">{registrationData.location}</h2>
           <div className="flex items-center mt-4">
-            {/* <LocationMarkerIcon className="h-5 w-5 mr-2 text-gray-400" /> */}
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5 mr-2 text-gray-400">
   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
@@ -274,28 +334,39 @@ export default function HomePage({ tournamentsData }) {
           </p>
 
           {message.length < 1 && (
-            <div className="mt-4">
+            <div className="mt-4 relative">
               <input
-                className="p-3 mb-4 block border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 bg-gray-100 placeholder-gray-500"
+                className="p-3 pr-10 mb-4 block border border-gray-300 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-800 bg-gray-100 placeholder-gray-500"
                 value={searchQuery}
                 onChange={handleQueryChange}
-                placeholder="Enter your Name / CGSCA ID"
+                placeholder="Enter Name / CGSCA ID"
               />
+              <button
+                className="absolute top-1/2 right-3 transform -translate-y-1/2 focus:outline-none"
+                onClick={handleSearchClick}
+              >
+               
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-8 w-8 text-gray-400 cursor-pointer">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+</svg>
+
+              </button>
             </div>
           )}
 
-          {searchQuery?.length > 3 && (
-            <table className="mt-4 mb-4 w-full max-h-72 overflow-y-scroll">
+          {searchQuery.length>=1 && notFound  ? <p>No Player Found</p> : apiResponse.length>=1 && message.length<1 && (
+            <div className=' w-full max-h-40 overflow-scroll'>
+            <table className="mt-4 mb-4 mx-auto">
               <thead>
                 <tr>
-                  <th className="py-2 px-4 bg-gray-100 text-left">User ID</th>
-                  <th className="py-2 px-4 bg-gray-100 text-left">User Name</th>
+                  <th className="py-2 px-4 bg-gray-100 text-left">Reg. ID</th>
+                  <th className="py-2 px-4 bg-gray-100 text-left">Name</th>
                   <th className="py-2 px-4 bg-gray-100"></th>
                 </tr>
               </thead>
               <tbody>
                 {apiResponse.map((user) => (
-                  <tr key={user.id}>
+                  <tr key={user.id} className=' overflow-x-scroll'>
                     <td className="py-2 px-4 border border-gray-300">{user.id}</td>
                     <td className="py-2 px-4 border border-gray-300">{user.firstName}</td>
                     <td className="py-2 px-4 border border-gray-300">
@@ -310,6 +381,7 @@ export default function HomePage({ tournamentsData }) {
                 ))}
               </tbody>
             </table>
+           </div>
           )}
 
           {message.length >= 1 && (
@@ -321,7 +393,9 @@ export default function HomePage({ tournamentsData }) {
             className="mt-6 inline-flex w-full justify-center rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
             onClick={() => {
               setOpen(false);
+              setSearchQuery('')
               setMessage('');
+              setApiResponse([])
             }}
           >
             Close
@@ -344,3 +418,14 @@ export async function getServerSideProps() {
     },
   };
 }
+
+const convertToCSV = (data) => {
+  const headers = Object.keys(data[0]);
+  const rows = data.map((item) => headers.map((header) => item[header]));
+  const csvContent = [
+    headers.join(','),
+    ...rows.map((row) => row.join(',')),
+  ].join('\n');
+  return csvContent;
+};
+

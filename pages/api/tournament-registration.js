@@ -20,8 +20,8 @@ export default async function tournamentRegistration(req, res) {
       );
 
       if (isUserRegistered) {
-        console.log('User already registered!');
-        res.status(200).json({ message: 'User already registered' });
+        console.log('Player already registered!');
+        res.status(200).json({ message: 'Player already registered' });
         return;
       }
 
@@ -42,7 +42,7 @@ export default async function tournamentRegistration(req, res) {
 
       await client.patch(updateQuery).set(updatedTournament).commit();
       console.log('after patch and commit');
-      res.status(200).json({ message: 'User registered successfully' });
+      res.status(200).json({ message: 'Player registered successfully' });
     } catch (error) {
       console.log('Error occurred inside post catch, error is', error);
       res.status(500).json({ message: error });
