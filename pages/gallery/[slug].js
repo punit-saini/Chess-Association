@@ -18,7 +18,7 @@ export default function slug({post}){
             <div className="bg-gray-100 min-h-screen py-8">
                 <header className="py-12 lg:py-16 w-5/6 mx-auto md:w-4/6 lg:w-1/2">
                
-                    <h1 className="text-4xl sm:text-5xl font-bold text-center leading-loose text-gray-800 mb-6">{post?.title}</h1>
+                    <h1 className="text-4xl sm:text-5xl font-bold text-center text-gray-800 mb-6">{post?.title}</h1>
 
                 </header>
 
