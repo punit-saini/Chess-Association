@@ -243,7 +243,7 @@ export default function HomePage({ tournamentsData }) {
             </span>
             <span className="ml-2 font-medium text-sm">Players List</span>
           </button>
-          <button
+          {!moment(tournament.date).isBefore(moment()) && <button
             onClick={() => {
               setRegistrationData(tournament);
               setOpen(true);
@@ -254,8 +254,7 @@ export default function HomePage({ tournamentsData }) {
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 inline ml-1 mb-0.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>
-
-          </button>
+          </button>}
         </div>
       </div>
     </div>

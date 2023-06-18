@@ -433,7 +433,7 @@ export default ({ bannerImage, blogs, notices, newsArticles,galleryPosts}) => {
               alt={galleryPost.title}
             />
             <div className="absolute inset-0 flex items-center h-[250px] bg-slate-950 bg-opacity-40 justify-center hover:opacity-0 opacity-100 transition-opacity duration-300">
-              <p className="text-center text-white text-lg font-bold">{galleryPost.title}</p>
+              <p className="text-center text-white text-lg font-bold px-2">{galleryPost.title}</p>
             </div>
           </div>
         </Link>

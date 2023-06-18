@@ -19,12 +19,12 @@ export default function slug({post}){
                 <header className="py-12 lg:py-16 w-5/6 mx-auto md:w-4/6 lg:w-1/2">
                
                     <h1 className="text-4xl sm:text-5xl font-bold text-center leading-loose text-gray-800 mb-6">{post?.title}</h1>
-                    <p className="text-xl text-gray-600 text-center mb-6">
+
+                </header>
+
+                <p className="text-xl w-5/6 mx-auto text-gray-600 text-justify font-serif mb-6">
   {post?.description?.[0]?.children?.[0]?.text || ''}
 </p>
-
-               
-                </header>
                
                   <div className=" mb-16 w-11/12 md:w-5/6 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {post?.image.map((image) => (
