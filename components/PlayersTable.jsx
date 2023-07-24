@@ -46,7 +46,7 @@ const PlayersTable = () => {
         try {
             const query = '*[_type == "register"] | order(_createdAt desc){id, firstName, lastName, gender, status, registrationType, approvalStatus}';
             const response = await client.fetch(query)
-            // console.log('result is : ', response)
+            console.log('result is : ', response)
             setPlayers(response)
             setFilteredPlayers(response)
         } catch (error) {
