@@ -1,4 +1,4 @@
-![TxtBeomjunGIF](https://github.com/punit-saini/Chess-Association/assets/64743687/71f9e4ea-c66b-403e-a614-03e5d97719a8)# Chess Association Website :♟️:
+# Chess Association Website :♟️:
 
 👋 Welcome to the Chess Association GitHub repository! This is a full-stack web application built using the following tech stack:
 ![HatTipThanksGIF](https://github.com/punit-saini/Chess-Association/assets/64743687/c1d36db7-06d9-4ccb-b3a4-761c4dd719a8)
