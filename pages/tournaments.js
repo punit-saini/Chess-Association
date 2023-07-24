@@ -5,6 +5,8 @@ import { motion as m } from 'framer-motion';
 import { Dialog, Transition } from '@headlessui/react'
 import Link from 'next/link';
 import axios from 'axios';
+// import { LocationMarkerIcon, CalendarIcon, DocumentTextIcon, ArrowRightIcon } from '@heroicons/react/solid';
+// import { DocumentTextIcon, ArrowRightIcon, LocationMarkerIcon } from '@heroicons/react/outline';
 
 export default function HomePage({ tournamentsData }) {
   const [tournaments, setTournaments] = useState(tournamentsData);
@@ -50,9 +52,10 @@ export default function HomePage({ tournamentsData }) {
     setApiResponse(apiResponse.filter((user) => user.id === userId));
 
     setIsRegistering(true);
+    // console.log('inside handleRegister');
   
     const data = {
-      name: registrationData.name,
+      name: registrationData.name, // Replace with the desired tournament name
       userId: userId,
       userName: userName,
     };
@@ -75,25 +78,34 @@ export default function HomePage({ tournamentsData }) {
 
   const handleDownloadCSV = async (tournamentName) => {
     try {
+      // Fetch the registered players list for the selected tournament
       const query = `*[_type == "tournament" && name=="${tournamentName}"]`;
        const response = await client.fetch(query);
       if (!response) {
         throw new Error('Failed to fetch registered players');
       }
+      // const data = await response[0].registeredStudent.json();
       console.log('data is ', response[0].registeredStudent)
   
+      // Convert the registered players list to CSV format
       const csvContent = convertToCSV(response[0].registeredStudent);
   
+      // // Create a Blob from the CSV content
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
   
+      // // Generate a unique filename for the CSV file
+      // const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
       const filename = `registered_players_${tournamentName}.csv`;
   
+      // // Create a temporary link element
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
       link.download = filename;
   
+      // // Programmatically click the link to trigger the download
       link.click();
   
+      // // Cleanup the temporary link
       URL.revokeObjectURL(link.href);
       link.remove();
     } catch (error) {
@@ -415,4 +427,3 @@ const convertToCSV = (data) => {
   ].join('\n');
   return csvContent;
 };
-
