@@ -19,8 +19,8 @@ export default function Payments() {
     try {
       const paymentData = new FormData();
       paymentData.append('file', paymentProof);
-      paymentData.append('upload_preset', 't25uyjib');
-      paymentData.append('cloud_name', 'dw0f3d3zh');
+      paymentData.append('upload_preset', process.env.upload_preset);
+      paymentData.append('cloud_name', process.env.cloud_name);
       const paymentUpload = fetch('https://api.cloudinary.com/v1_1/dw0f3d3zh/image/upload', {
         method: 'post',
         body: paymentData,
@@ -150,7 +150,7 @@ export default function Payments() {
               />
             </div>
             <div className="md:col-span-2 items-center">
-              <img src="CGSCA SCR.jpeg" alt="QR Code" className="w-28 h-28 mr-4" />
+              <img src="qrcode.png" alt="QR Code" className="w-28 h-28 mr-4" />
               <p className="text-lg mt-2 text-gray-700">Pay Using This QR Code</p>
             </div>
             <div className="md:col-span-2">

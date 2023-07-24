@@ -25,9 +25,9 @@ export default function Footer() {
         <div className="flex flex-wrap mb-8">
           <div className="w-full sm:w-1/2 lg:w-1/3 mb-4 sm:mb-0">
             <img src='../logo.png' width={200} height={200} className=' bg-white p-2 mb-3 rounded-full' />
-            <h3 className="text-lg font-bold mb-2">Chhattisgarh State Chess Association</h3>
+            <h3 className="text-lg font-bold mb-2">State Chess Association</h3>
             <p className="text-sm text-my-grey leading-5">
-              Ramadhin Marg, Rajnandgaon, Chhattisgarh, 491441
+              14, Lok Kalyan Marg, 491441
             </p>
           </div>
           <div className="w-full sm:w-1/2 lg:w-1/3 mb-4 sm:mb-0">
@@ -91,12 +91,12 @@ export default function Footer() {
         </div>
       </div>
     
-            <p className=" text-gray-300 text-xs w-full lg:pt-2 mx-auto bg-gray-800 py-2 md:rounded-b-3xl text-center">
+            <p className=" text-gray-300  w-full lg:pt-2 mx-auto bg-gray-800 py-2 md:rounded-b-3xl text-center">
               <span className=' text-white text-base mt-2'> &copy; { new Date().getFullYear()} CGSCA | All rights reserved.</span>
               <br />
               Developed by{" "}
               <Link
-                href="https://linktr.ee/punitsaini"
+                href="https://punit.tech"
                 className="text-gray-500 hover:text-gray-300 underline"
                 target="_blank"
                 rel="noopener noreferrer"

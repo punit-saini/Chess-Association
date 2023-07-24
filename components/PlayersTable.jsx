@@ -30,7 +30,6 @@ const PlayersTable = () => {
       const id = e.target.getAttribute('name')
     const query = `*[_type == "register" && id == '${id}']`;
     const response = await client.fetch(query)
-    // console.log('response from inside handle show id is : ', response)
     setUserDetail(response[0])
      setOpen(true);
   }
@@ -61,8 +60,8 @@ const PlayersTable = () => {
         setIsSubmitting(true)
           const paymentData = new FormData();
           paymentData.append("file", paymentProof);
-          paymentData.append("upload_preset", "t25uyjib");
-          paymentData.append("cloud_name", "dw0f3d3zh");
+          paymentData.append("upload_preset", process.env.upload_preset);
+          paymentData.append("cloud_name", process.env.cloud_name);
           const paymentUpload = fetch("https://api.cloudinary.com/v1_1/dw0f3d3zh/image/upload", {
             method: "post",
             body: paymentData,
@@ -198,8 +197,8 @@ const PlayersTable = () => {
                         <img src='logo.png' className='w-[150px] h-[130px] mx-auto' />
                     </div>
                     <div className='flex flex-col justify-center gap-2 leading-6'>
-                          <h1 className=' text-xl font-bold'>Chhattisgarh State Chess Association</h1>
-                          <p className='font-semibold'>Affiliated To All India Chess Federation <br /> Recognised By Sports and Youth Welfare C.G Govt.</p>
+                          <h1 className=' text-xl font-bold'>State Chess Association</h1>
+                          <p className='font-semibold'>Affiliated To All India Chess Federation <br /> Recognised By Sports and Youth Welfare of Govt.</p>
                     </div>
                 </div>
 
@@ -287,7 +286,7 @@ const PlayersTable = () => {
                                         <img src='logo.png' className='w-[150px] h-[130px] mx-auto' />
                                     </div>
                                     <div className='flex flex-col justify-center gap-2 leading-6'>
-                                          <h1 className=' text-xl font-bold'>Chhattisgarh State Chess Association</h1>
+                                          <h1 className=' text-xl font-bold'>State Chess Association</h1>
                                           <p className='font-semibold'>Affiliated To All India Chess Federation <br /> Recognised By Sports and Youth Welfate C.G Govt.</p>
                                     </div>
                                 </div>

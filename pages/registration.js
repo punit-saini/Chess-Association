@@ -24,6 +24,7 @@ export default function Example() {
      
      const cancelButtonRef = useRef(null)
 
+     console.log('is ', process.env.cloud_name)
 
     const handleButtonClick = async ()=> {
       const res = await axios.post('/api/handlePayment')
@@ -42,34 +43,37 @@ export default function Example() {
          setIsSubmitting(true)
   try {
 
-
     const photoData = new FormData();
       photoData.append("file", photo);
-      photoData.append("upload_preset", "t25uyjib");
-      photoData.append("cloud_name", "dw0f3d3zh");
+      photoData.append("upload_preset", process.env.upload_preset);
+      photoData.append("cloud_name", process.env.cloud_name);
       const photoUpload = fetch("https://api.cloudinary.com/v1_1/dw0f3d3zh/image/upload", {
         method: "post",
         body: photoData,
       });
-  
+
+
+      // console.log('photo data ', photoData)
       const dobData = new FormData();
       dobData.append("file", dobProof);
-      dobData.append("upload_preset", "t25uyjib");
-      dobData.append("cloud_name", "dw0f3d3zh");
+      dobData.append("upload_preset",process.env.upload_preset);
+      dobData.append("cloud_name", process.env.cloud_name);
       const dobUpload = fetch("https://api.cloudinary.com/v1_1/dw0f3d3zh/image/upload", {
         method: "post",
         body: dobData,
       });
+      // console.log('dob dagta is ', dobData)
 
       const paymentData = new FormData();
       paymentData.append("file", paymentProof);
-      paymentData.append("upload_preset", "t25uyjib");
-      paymentData.append("cloud_name", "dw0f3d3zh");
+      paymentData.append("upload_preset", process.env.upload_preset);
+      paymentData.append("cloud_name", process.env.cloud_name);
       const paymentUpload = fetch("https://api.cloudinary.com/v1_1/dw0f3d3zh/image/upload", {
         method: "post",
         body: paymentData,
       });
 
+      // console.log('payment data is ', paymentData)
       const [photoResponse, dobResponse, paymentResponse] = await Promise.all([photoUpload, dobUpload, paymentUpload]);
 
 
@@ -326,22 +330,7 @@ export default function Example() {
               </div>
             </div>
 
-            {/* <div className="col-span-full">
-              <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
-                Street address
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="address"
-                  id="street-address"
-                  autoComplete="street-address"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-my-green sm:text-sm sm:leading-6"
-                  onChange={ (e)=>
-                    setFormData({...formData, address : e.target.value})
-                  }
-                />
-              </div> */}
+          
             </div>
 
 
@@ -683,8 +672,7 @@ export default function Example() {
                           <h1 className=' text-xl font-bold'>Chhattisgarh State Chess Association</h1>
                           <p className='font-semibold'>Affiliated To All India Chess Federation <br /> Recognised By Sports and Youth Welfate C.G Govt.</p>
                     </div>
-                    <img className=' w-4/5 md:w-3/5 mx-auto my-4' src='CGSCA SCR.jpeg' />
-                    <h1 className='mb-4'>UPI ID : 9827161369m@pnb</h1>
+                    <h1 className='my-4'>UPI ID : notAnActualUPI_ID@pnb</h1>
                 </div>
 
                  
